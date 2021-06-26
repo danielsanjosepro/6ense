@@ -1,5 +1,7 @@
 #include "Display.h"
 
+Display display(0x27, 16, 2);
+
 Display::Display(const int i2c_addr, const int num_columns, const int num_lines) 
     : LiquidCrystal_I2C(i2c_addr, num_columns, num_lines) {}
 
