@@ -1,10 +1,6 @@
 #include <Arduino_LSM6DS3.h>
 #include <Imu.h>
 
-float x, y, z;
-int deg_x = 0;
-int deg_y = 0;
-
 void Imu::setup(){
     while(!Serial);
     Serial.println("Started IMU");

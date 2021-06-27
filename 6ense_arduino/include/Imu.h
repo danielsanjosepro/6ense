@@ -4,11 +4,14 @@
 #include <I_Component.h>
 
 class Imu : I_Component{
-    public:
-        void setup() override;
-        void loop() override;
+public:
+    void setup() override;
+    void loop() override;
     
-    private:
+private:
+    float x, y, z;
+    int deg_x = 0;
+    int deg_y = 0;
 
 };
 
