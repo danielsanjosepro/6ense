@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Arduino.h>
 #include "I_Component.h"
 #include <LiquidCrystal_I2C.h>
 
@@ -26,5 +27,7 @@ private:
 	0b10001,
 	0b10001,
 	0b01110
+    };
 };
-};
+
+extern Display display;
