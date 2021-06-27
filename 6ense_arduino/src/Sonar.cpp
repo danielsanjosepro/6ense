@@ -2,7 +2,7 @@
 #include "Display.h"
 #include "Button.h"
 
-// Sonar sonar(11, 12);
+// Sonar sonar(11, 12);  // only if one sonar is used
 
 Sonar::Sonar(int trigPin, int echoPin):
     trigPin(trigPin), echoPin(echoPin) {}

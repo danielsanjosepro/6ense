@@ -21,7 +21,7 @@ Imu imu = Imu();
 void setup()
 {
     Serial.begin(SERIAL_BAUDRATE);  // start serial communication for other Objects
-    delay(5000); // only debugging: purposes to have some time to open the serial monitor.
+    delay(5000); // only debugging purposes: to have some time to open the serial monitor.
     
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
@@ -30,7 +30,7 @@ void setup()
     // imu.setup();
     // button.setup();
     // sonar.setup();
-    sonarCollection.setup();
+    // sonarCollection.setup();
 } 
 
 void loop() {
@@ -40,6 +40,5 @@ void loop() {
     // button.loop();
     // button.testMe();
     // sonar.loop();
-    // delay(500);
-    sonarCollection.loop();
+    // sonarCollection.loop();
 }

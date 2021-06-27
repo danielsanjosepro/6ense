@@ -35,4 +35,4 @@ private:
     bool outOfRange(int distance);
 };
 
-// extern Sonar sonar;
+// extern Sonar sonar;  // only if 1 Sonar is used
