@@ -18,14 +18,14 @@ public:
 
 private:
     int pin;  // should be attached to an interrupt
-
+    
 public:
     // debouncing variables (must be public, or at least it makes it easier)
     volatile bool pressed = false;
     volatile bool wasPressed = false;
     volatile unsigned long pressedDuration;
     volatile unsigned long firstTimePressed;
-    static const long debouncingTime = 100;  // milli s
+    static const long debouncingTime = 20;  // milli s
 };
 
 extern Button button;

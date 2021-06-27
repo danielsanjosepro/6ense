@@ -1,38 +1,31 @@
 #include "Button.h"
 
 /**
- * Interrupt that gets triggered if the button gets pressed.
+ * Interrupt that gets triggered if the button changes.
  * If the button is pressed for the first time (not a bounce)
  * we save the time to estimate how much time the button was
  * pressed.
 */
-void ISR_pressed(){
-    if(not button.pressed){
+void ISR_buttonChange(){
+    if(!button.pressed){  // first time that the button is pressed
         button.pressed = true;
         button.firstTimePressed = millis();
-    }
-}
-
-/**
- * Interrupt that gets triggered if the button gets unpressed.
- * It deals with the bouncing problem of the button.
-*/
-void ISR_unpressed(){
-    button.pressedDuration = millis() - button.firstTimePressed;
-    if(button.pressedDuration > button.debouncingTime){
-        button.pressed = false;
-        button.wasPressed = true;
+    }else{
+        button.pressedDuration = millis() - button.firstTimePressed;
+        if(button.pressed and button.pressedDuration > button.debouncingTime){
+            button.pressed = false;
+            button.wasPressed = true;
+        }
     }
 }
 
 Button button(2);
 
-Button::Button(int const pin) : pin(pin), pressedDuration(0), firstTimePressed(0){}
+Button::Button(int const pin) : pin(pin), pressedDuration(0), firstTimePressed(100){}
 
 void Button::setup(){
     pinMode(pin, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(pin), ISR_pressed,  FALLING);
-    attachInterrupt(digitalPinToInterrupt(pin), ISR_unpressed, RISING);
+    attachInterrupt(digitalPinToInterrupt(pin), ISR_buttonChange, CHANGE);
     Serial.println("Button: Setup done");
 }
 
@@ -46,9 +39,9 @@ void Button::loop(){
  * The argument duration is in milliseconds
  */
 bool Button::wasPressedOnce(unsigned long duration){
-    if(wasPressed and pressedDuration < duration){
+    if(wasPressed && (pressedDuration < duration)){
         Serial.println("Duration: " + String(pressedDuration)
-        + ", last time pressed: " + String(firstTimePressed)
+        + ", first time pressed: " + String(firstTimePressed)
         + ", millis now: " + String(millis()));
         wasPressed = false;
         pressedDuration = 0;
@@ -64,7 +57,7 @@ bool Button::wasPressedOnce(unsigned long duration){
  * The argument duration is in milliseconds
  */
 bool Button::wasPressedOnceLong(unsigned long duration){
-    if(wasPressed and pressedDuration > duration){
+    if(wasPressed && (pressedDuration > duration)){
         Serial.println("Duration: " + String(pressedDuration)
         + ", last time pressed: " + String(firstTimePressed)
         + ", millis now: " + String(millis()));
