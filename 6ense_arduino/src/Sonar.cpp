@@ -2,30 +2,24 @@
 #include "Display.h"
 #include "Button.h"
 
-Sonar sonar(11, 12);
+// Sonar sonar(11, 12);
 
 Sonar::Sonar(int trigPin, int echoPin):
-    I_BTSender(1), trigPin(trigPin), echoPin(echoPin) {}
+    trigPin(trigPin), echoPin(echoPin) {}
 
 void Sonar::setup() {
     pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
     pinMode(echoPin, INPUT); // Sets the echoPin as an Input
     Serial.println("Sonar: Setup done: trigPin: " + String(trigPin)
-        + ", echoPin" + String(echoPin)
-        + ", soundSpeed:" + String(soundSpeed)
+        + ", echoPin: " + String(echoPin)
+        + ", soundSpeed: " + String(soundSpeed)
     );
 }
 
 void Sonar::loop() {
     // Nothing to do here TODO ddelete this
-    Serial.println("Updating distance");
-    sonar.updateDistance();
-    printDistanceOnDisplay();
-    delay(1000);
-}
-
-String Sonar::getData(){
-    return "Hello";  // TODO
+    updateDistance();
+    Serial.println(distance);
 }
 
 void Sonar::sendTrigPulse(){
@@ -49,7 +43,7 @@ int Sonar::updateDistance(){
     // Reads the echoPin, returns the sound wave travel time in microseconds
     duration = pulseIn(echoPin, HIGH);  // in ms
     // Calculating the distance
-    int measuredDistance = duration * soundSpeed/2;
+    int measuredDistance = duration * (soundSpeed/2);
     if(outOfRange(measuredDistance)){
         return distance = -1;
     }

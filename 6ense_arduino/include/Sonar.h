@@ -1,17 +1,16 @@
 #pragma once
+
 #include <Arduino.h>
 #include "I_Component.h"
 #include "I_BTSender.h"
 
+#include <ArduinoSTL.h>
 
-class Sonar : public I_Component, public I_BTSender {
+class Sonar : public I_Component {
 public:
     // Component Interface
     void setup() override;
     void loop() override;
-
-    // BTSender Interface
-    String getData() override;
 
     //Constructor 
     Sonar(int trigPin, int echoPin);
@@ -36,4 +35,4 @@ private:
     bool outOfRange(int distance);
 };
 
-extern Sonar sonar;
+// extern Sonar sonar;
