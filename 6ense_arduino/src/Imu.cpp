@@ -1,6 +1,8 @@
 #include <Arduino_LSM6DS3.h>
 #include <Imu.h>
 
+Imu::Imu() : I_BTSender(3) {} // 3 for each axis
+
 void Imu::setup(){
     while(!Serial);
     Serial.println("Started IMU");
@@ -8,7 +10,6 @@ void Imu::setup(){
     if(!IMU.begin()){
         Serial.println("Failed to initialize IMU.");
     }
-
 }
 
 
@@ -19,4 +20,8 @@ void Imu::loop(){
         Serial.print("y: " + String(y) + "\t");
         Serial.print("z: " + String(z) + "\n");
     }
+}
+
+String Imu::getData(){
+    return "Hello!";  // TODO 
 }

@@ -6,6 +6,9 @@
 #include "Display.h"
 #include "Imu.h"
 #include "Button.h"
+#include "I_BTSender.h"
+
+#include <vector>
 
 #define SERIAL_BAUDRATE 9600
 
@@ -19,14 +22,14 @@ void setup()
     
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
-    i2c_scanner.setup();
+    // i2c_scanner.setup();
     // display.setup();
     //imu.setup();
     // button.setup();
 } 
 
 void loop() {
-    i2c_scanner.loop();
+    // i2c_scanner.loop();
     // display.loop();
     // imu.loop();
     // button.loop();
