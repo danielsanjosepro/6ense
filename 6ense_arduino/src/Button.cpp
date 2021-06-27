@@ -21,7 +21,9 @@ void ISR_buttonChange(){
 
 Button button(2);
 
-Button::Button(int const pin) : pin(pin), pressedDuration(0), firstTimePressed(100){}
+Button::Button(int const pin) : pin(pin){
+    
+}
 
 void Button::setup(){
     pinMode(pin, INPUT_PULLUP);

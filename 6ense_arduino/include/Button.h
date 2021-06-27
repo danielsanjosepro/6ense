@@ -24,8 +24,8 @@ public:
     // debouncing variables (must be public, or at least it makes it easier)
     volatile bool pressed = false;
     volatile bool wasPressed = false;
-    volatile unsigned long pressedDuration;
-    volatile unsigned long firstTimePressed;
+    volatile unsigned long pressedDuration = 0;
+    volatile unsigned long firstTimePressed = 0;
     static const long debouncingTime = 20;  // milli s
 };
 

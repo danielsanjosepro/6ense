@@ -1,10 +1,9 @@
 #include <Arduino_LSM6DS3.h>
-#include <imu.h>
+#include <Imu.h>
 
 float x, y, z;
 int deg_x = 0;
 int deg_y = 0;
-
 
 void Imu::setup(){
     while(!Serial);
@@ -12,7 +11,6 @@ void Imu::setup(){
 
     if(!IMU.begin()){
         Serial.println("Failed to initialize IMU.");
-
     }
 
 }
@@ -24,11 +22,5 @@ void Imu::loop(){
         Serial.print("x: " + String(x) + "\t");
         Serial.print("y: " + String(y) + "\t");
         Serial.print("z: " + String(z) + "\n");
-
-        delay(100);
-
-
-
-
     }
 }

@@ -11,3 +11,5 @@ class Imu : I_Component{
     private:
 
 };
+
+extern Imu imu;
