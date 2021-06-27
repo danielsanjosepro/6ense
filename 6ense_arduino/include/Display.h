@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Arduino.h>
 #include "I_Component.h"
 #include <LiquidCrystal_I2C.h>
 

@@ -11,6 +11,7 @@ void Display::setup(){
     this->createChar(0, logo);
     // test the  LCD:
     testMe();
+    Serial.println("Display: Setup done");
 }
 
 void Display::loop() {
