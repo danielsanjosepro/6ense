@@ -33,7 +33,7 @@ void Button::testMe(){
     if(button.wasPressedOnce()){
         Serial.println("The button was pressed once shortly");
     }else if(button.wasPressedOnceLong()){
-        Serial.println("The button was pressed once for more than 1 second");
+        Serial.println("The button was pressed once for more than 2 seconds");
     }else{
         Serial.println("The button was not pressed");
     }

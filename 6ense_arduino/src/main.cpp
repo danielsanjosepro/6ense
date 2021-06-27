@@ -1,5 +1,11 @@
 #include <Arduino.h>
 
+#if defined(ARDUINO_ARDUINO_NANO33BLE)
+    #define BOARD "Nano33Ble"
+#else
+    #define BOARD "Nano33IoT"
+#endif
+
 // 6ense includes
 // #include "I2CScanner.hpp"
 #include "Display.h"
@@ -18,14 +24,17 @@ void setup()
     
     // Setups:
     // i2c_scanner.setup();
+    Serial.println("Board Type: " + String(BOARD));
     display.setup();
-    imu.setup();
+    // imu.setup();
     button.setup();
 } 
 
 void loop() {
     // i2c_scanner.loop();
     display.loop();
-    imu.loop();
+    // imu.loop();
     button.loop();
+    button.testMe();
+    delay(500);
 }
