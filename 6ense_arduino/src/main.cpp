@@ -7,12 +7,13 @@
 #include "Imu.h"
 #include "Button.h"
 #include "I_BTSender.h"
+#include "Sonar.h"
 
-#include <vector>
+// #include <vector>
 
 #define SERIAL_BAUDRATE 9600
 
-auto i2c_scanner = I2CScanner();
+// auto i2c_scanner = I2CScanner();
 Imu imu = Imu();
 
 void setup()
@@ -22,17 +23,19 @@ void setup()
     
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
-    // i2c_scanner.setup();
-    // display.setup();
-    //imu.setup();
-    // button.setup();
+    //i2c_scanner.setup();
+    display.setup();
+    // imu.setup();
+    button.setup();
+    sonar.setup();
 } 
 
 void loop() {
     // i2c_scanner.loop();
-    // display.loop();
+    display.loop();
     // imu.loop();
-    // button.loop();
-    //button.testMe();
+    button.loop();
+    // button.testMe();
+    sonar.loop();
     // delay(500);
 }
