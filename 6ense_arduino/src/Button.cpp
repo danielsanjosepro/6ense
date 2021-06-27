@@ -29,6 +29,16 @@ void Button::setup(){
     Serial.println("Button: Setup done");
 }
 
+void Button::testMe(){
+    if(button.wasPressedOnce()){
+        Serial.println("The button was pressed once shortly");
+    }else if(button.wasPressedOnceLong()){
+        Serial.println("The button was pressed once for more than 1 second");
+    }else{
+        Serial.println("The button was not pressed");
+    }
+}
+
 void Button::loop(){
     // Nothing to do here
 }

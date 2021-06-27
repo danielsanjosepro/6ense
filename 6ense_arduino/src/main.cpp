@@ -18,10 +18,6 @@ void setup()
     // i2c_scanner.setup();
     display.setup();
     button.setup();
-
-    //Debugging:
-    pinMode(LED_BUILTIN, OUTPUT);
-    digitalWrite(LED_BUILTIN, HIGH);
 } 
 
 void loop() {
@@ -29,14 +25,4 @@ void loop() {
 
     display.loop();
     button.loop();
-
-    if(button.wasPressedOnce()){
-        Serial.println("The button was pressed once shortly");
-    }else if(button.wasPressedOnceLong()){
-        Serial.println("The button was pressed once for more than 1 second");
-    }else{
-        Serial.println("The button was not pressed");
-    }
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-    delay(500);
 }

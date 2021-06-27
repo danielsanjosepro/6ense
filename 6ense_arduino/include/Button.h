@@ -15,6 +15,7 @@ public:
     // Some functions to interact with the button
     bool wasPressedOnce(unsigned long duration = 2000);
     bool wasPressedOnceLong(unsigned long duration = 2000);
+    void testMe();
 
 private:
     int pin;  // should be attached to an interrupt
