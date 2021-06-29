@@ -20,6 +20,10 @@
 ### Communication:
 - `bluetooth` object gathers the data from the bluetooth sender objects and deals with the bluetooth connection.
 
+### Timing:
+- `Timer`: timer objects allow to measure the time beetween two times (tic() and toc())
+- `Coordinator`: coordinator allows components to do something in the loop if "their time has come"
+
 ### Utilities
 - `timer` TODO
 
