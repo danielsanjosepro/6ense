@@ -20,7 +20,8 @@
 ### Communication:
 - `bluetooth` object gathers the data from the bluetooth sender objects and deals with the bluetooth connection.
 
-### Communication:
+### Utilities
+- `timer` TODO
 
 ## Branching:
 - `main`: main code for the product. Never push on it.
