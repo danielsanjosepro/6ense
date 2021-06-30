@@ -4,8 +4,6 @@
 #include "I_Component.h"
 #include "I_BTSender.h"
 
-#include <ArduinoSTL.h>
-
 class Sonar : public I_Component {
 public:
     // Component Interface

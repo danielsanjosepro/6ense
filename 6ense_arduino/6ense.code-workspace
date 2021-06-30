@@ -63,7 +63,22 @@
 			"streambuf": "cpp",
 			"thread": "cpp",
 			"cinttypes": "cpp",
-			"typeinfo": "cpp"
+			"typeinfo": "cpp",
+			"associative_base": "cpp",
+			"basic_definitions": "cpp",
+			"char_traits": "cpp",
+			"complex": "cpp",
+			"func_exception": "cpp",
+			"ios": "cpp",
+			"iostream": "cpp",
+			"istream_helpers": "cpp",
+			"iterator_base": "cpp",
+			"locale": "cpp",
+			"ostream_helpers": "cpp",
+			"queue": "cpp",
+			"serstream": "cpp",
+			"string_iostream": "cpp",
+			"valarray": "cpp"
 		}
 	}
 }
