@@ -9,7 +9,6 @@
 
 class Imu : public I_Component, public I_BTSender {
 public:
-    //TODO: Make sensor_rate a default value in constructor
     float sensor_rate; // In units of Hz
     unsigned long time_current; // Current time since arduino started for velocity calculation
     unsigned long time_last = 0.00; // Last timestamp since velocity calculation
