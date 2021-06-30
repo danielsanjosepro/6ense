@@ -10,7 +10,7 @@ void Display::setup(){
     this->backlight();
     this->createChar(0, logo);
     // test the  LCD:
-    testMe();
+    // testMe();
     Serial.println("Display: Setup done");
 }
 

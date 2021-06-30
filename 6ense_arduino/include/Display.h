@@ -4,7 +4,7 @@
 #include "I_Component.h"
 #include <LiquidCrystal_I2C.h>
 
-class Display : I_Component, LiquidCrystal_I2C {
+class Display : public I_Component, public LiquidCrystal_I2C {
 public:
     // Component Interface
     void setup() override;

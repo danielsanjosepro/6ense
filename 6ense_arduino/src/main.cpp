@@ -7,17 +7,22 @@
 #include "Imu.h"
 #include "Button.h"
 #include "I_BTSender.h"
+#include "Sonar.h"
+#include "SonarCollection.h"
 
-#include <vector>
+// #include <vector>
 
 #define SERIAL_BAUDRATE 9600
 
 auto i2c_scanner = I2CScanner();
+// auto i2c_scanner = I2CScanner();
+SonarCollection sonarCollection = SonarCollection();
+Imu imu = Imu();
 
 void setup()
 {
     Serial.begin(SERIAL_BAUDRATE);  // start serial communication for other Objects
-    delay(5000); // only debugging: purposes to have some time to open the serial monitor.
+    delay(5000); // only debugging purposes: to have some time to open the serial monitor.
     
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
@@ -25,6 +30,8 @@ void setup()
     // display.setup();
     imu.setup();
     // button.setup();
+    // sonar.setup();
+    // sonarCollection.setup();
 } 
 
 void loop() {
@@ -32,6 +39,7 @@ void loop() {
     // display.loop();
     imu.loop();
     // button.loop();
-    //button.testMe();
-    // delay(500);
+    // button.testMe();
+    // sonar.loop();
+    // sonarCollection.loop();
 }

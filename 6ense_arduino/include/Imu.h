@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Arduino.h>
-#include <tuple>
 #include "I_Component.h"
 #include "I_BTSender.h"
 #include <iostream>
+#include <tuple>
 
 
 class Imu : public I_Component, public I_BTSender {
