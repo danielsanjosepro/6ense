@@ -1,11 +1,18 @@
 #pragma once
 
 #include <Arduino.h>
+#include <tuple>
 #include "I_Component.h"
 #include "I_BTSender.h"
+#include <iostream>
+
 
 class Imu : public I_Component, public I_BTSender {
 public:
+    //TODO: Make sensor_rate a default value in constructor
+    float sensor_rate; // In units of Hz
+    unsigned long time_current; // Current time since arduino started for velocity calculation
+    unsigned long time_last = 0.00; // Last timestamp since velocity calculation
     // Component Interface
     void setup() override;
     void loop() override;
@@ -14,19 +21,21 @@ public:
     String getData() override;
 
     // Constructor
-    Imu();
+    Imu(const float& sensor_rate);
 
     // Function to compute velocity for delta t from the accelerometers component's
-    float compute_current_velocity(float& velocity_last, const float& acc, 
-                                   float& time_current, float& time_last){
+    std::tuple<float, unsigned long> compute_current_velocity(float& velocity_last, 
+                                                              const float& acc, 
+                                                              unsigned long& time_last){
         float dv = 0;
         float velocity = 0;
-        
+        time_current = millis();
+
         dv = acc * (time_current - time_last);
-        velocity = dv + velocity_last;
+        velocity = dv + velocity_last; // Combine velocity from last timestep with new one
         time_last = time_current;
 
-        return velocity;
+        return std::make_tuple(velocity, time_last);
     }
 
 
