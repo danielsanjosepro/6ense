@@ -17,9 +17,10 @@ void Timer::tic(){
     toc_counter = 0;
 }
 
-long Timer::toc(){
+long Timer::toc(bool log_duration){
     duration = (*time_now)() - start;
-    Serial.write("*Toc* Duration: " + duration);
+    if(log_duration)
+        Serial.println("*Toc* Duration: " + String(duration));
     toc_counter++;
     return duration;
 }
