@@ -38,7 +38,6 @@ void setup()
 
     // Coordinator Inits:
     // coordinator.init();
-    timer.tic();
 } 
 
 void loop() {
