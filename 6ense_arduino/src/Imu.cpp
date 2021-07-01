@@ -27,20 +27,28 @@ void Imu::loop(){
            IMU.readGyroscope(gyro_x, gyro_y, gyro_z);
 
            filter.updateIMU(gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z);   
-           imu.roll = filter.getRoll();
-           imu.pitch = filter.getPitch();
-           imu.yaw = filter.getYaw();
-        
-            // Serial.print("x: " + String(acc_x) + "\t");
-            // Serial.print("y: " + String(acc_y) + "\t");
-            // Serial.print("z: " + String(acc_z) + "\n");
+           roll = filter.getRoll();
+           pitch = filter.getPitch();
+           yaw = filter.getYaw();
+
+           String imu_data = imu.getData();
+           Serial.println(imu_data);
+           delay(500);
             
-            // Test velocity for one axis
-            auto velocity_x = imu.velocity_x;
-            std::tie(velocity_x, time_last) = imu.compute_current_velocity(velocity_x, acc_x, time_last);
     }
 }
 
+// TODO: Bug in roll, pitch and yaw
 String Imu::getData(){
-    return "Hello!";  // TODO 
+    String imu_data = "acc_x: "  + String(acc_x)  + "\t" 
+                    + "acc_y: "  + String(acc_y)  + "\t" 
+                    + "acc_z: "  + String(acc_z)  + "\n"
+                    + "gyro_x: " + String(gyro_x) + "\t"
+                    + "gyro_y: " + String(gyro_y) + "\t"
+                    + "gyro_z: " + String(gyro_z) + "\n"
+                    + "roll: "   + String(roll)   + "\t"
+                    + "pitch: "  + String(pitch)  + "\t"
+                    + "yaw: "    + String(yaw)    + "\n";
+
+    return imu_data;
 }
