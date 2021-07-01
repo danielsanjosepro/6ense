@@ -9,8 +9,8 @@
 #include "I_BTSender.h"
 #include "Sonar.h"
 #include "SonarCollection.h"
-
-// #include <vector>
+#include "Timer.h"
+#include "Coordinator.h"
 
 #define SERIAL_BAUDRATE 9600
 
@@ -18,6 +18,10 @@ auto i2c_scanner = I2CScanner();
 // auto i2c_scanner = I2CScanner();
 SonarCollection sonarCollection = SonarCollection();
 Imu imu = Imu();
+
+// Coordinators & Timers:
+// Timer timer = Timer("micros");
+// Coordinator coordinator = Coordinator(1000); 
 
 void setup()
 {
@@ -32,6 +36,9 @@ void setup()
     // button.setup();
     // sonar.setup();
     // sonarCollection.setup();
+
+    // Coordinator Inits:
+    // coordinator.init();
 } 
 
 void loop() {

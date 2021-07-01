@@ -1,6 +1,8 @@
 #include "Coordinator.h"
 
-Coordinator::Coordinator(int period_ms) : period(period_ms), timer(Timer()) {}
+Coordinator::Coordinator(int period_ms) : period(period_ms) {
+    timer = Timer("millis");
+}
 
 void Coordinator::init(){
     timer.tic();
@@ -12,5 +14,6 @@ bool Coordinator::allowsLoop(){
         return true;
     } else {
         return false;
+        Serial.println("Not hello...");
     }
 }
