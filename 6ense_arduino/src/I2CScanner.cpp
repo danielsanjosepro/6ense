@@ -2,10 +2,6 @@
 #include <Wire.h>
 
 void I2CScanner::setup(){
-    while (!Serial.availableForWrite()){
-        delay(10);
-    }
-
     Serial.println();
     Serial.println("I2C scanner. Scanning ...");
     byte count = 0;
