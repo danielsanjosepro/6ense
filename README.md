@@ -1,5 +1,8 @@
 # 6ense
+## Board:
+
 ## Main Structure in Arduino Code:
+![pinout](images/PINOUT-Nano33IoT.png)
 
 ### Interfaces:
 - `I_Component`: every object that should have a setup and be called in the main loop inherits from this interface
@@ -23,9 +26,6 @@
 ### Timing:
 - `Timer`: timer objects allow to measure the time beetween two times (tic() and toc())
 - `Coordinator`: coordinator allows components to do something in the loop if "their time has come"
-
-### Utilities
-- `timer` TODO
 
 ## Branching:
 - `main`: main code for the product. Never push on it.

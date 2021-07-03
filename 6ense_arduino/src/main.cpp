@@ -15,9 +15,10 @@
 
 #define SERIAL_BAUDRATE 9600
 
+auto i2c_scanner = I2CScanner();
 // auto i2c_scanner = I2CScanner();
 SonarCollection sonarCollection = SonarCollection();
-Imu imu = Imu();
+// Imu imu = Imu();
 GPS gps = GPS();
 // Coordinators & Timers:
 // Timer timer = Timer("micros");
