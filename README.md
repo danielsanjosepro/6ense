@@ -1,8 +1,8 @@
 # 6ense
 ## Board:
+![pinout](images/6ense_circuit.pdf)
 
 ## Main Structure in Arduino Code:
-![pinout](images/PINOUT-Nano33IoT.png)
 
 ### Interfaces:
 - `I_Component`: every object that should have a setup and be called in the main loop inherits from this interface
