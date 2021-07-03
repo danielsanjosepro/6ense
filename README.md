@@ -1,6 +1,6 @@
 # 6ense
 ## Board:
-![pinout](images/6ense_circuit.pdf)
+![pinout](images/6ense_circuit.jpg)
 
 ## Main Structure in Arduino Code:
 
