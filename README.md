@@ -1,4 +1,6 @@
 # 6ense
+## Board:
+
 ## Main Structure in Arduino Code:
 
 ### Interfaces:
@@ -23,9 +25,6 @@
 ### Timing:
 - `Timer`: timer objects allow to measure the time beetween two times (tic() and toc())
 - `Coordinator`: coordinator allows components to do something in the loop if "their time has come"
-
-### Utilities
-- `timer` TODO
 
 ## Branching:
 - `main`: main code for the product. Never push on it.
