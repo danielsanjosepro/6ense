@@ -1,15 +1,14 @@
 #include <Arduino_LSM6DS3.h>
 #include <Imu.h>
 #include "MadgwickAHRS.h"
-#include <iostream>
 
 // TODO: Test if madwick filter is to slow
 Madgwick filter; // Init madwick filter
 
-Imu::Imu(const float& sensor_rate) : I_BTSender(3) {} // 3 for each axis
-Imu imu(104.00);
+Imu::Imu() : I_BTSender(3) {} // 3 for each axis
 
-void Imu::setup(){
+void Imu::setup(bool imu_on=true){
+    if(imu_on){
     while(!Serial);
     Serial.println("Started IMU");
 
@@ -17,25 +16,34 @@ void Imu::setup(){
         Serial.println("Failed to initialize IMU.");
     }
     filter.begin(imu.sensor_rate);
+    }else{
+        Serial.println("IMU OFF.");
+    }
 }
 
 
-void Imu::loop(){
-    if(IMU.accelerationAvailable() && 
-       IMU.gyroscopeAvailable()){
-           IMU.readAcceleration(acc_x, acc_y, acc_z);
-           IMU.readGyroscope(gyro_x, gyro_y, gyro_z);
+void Imu::loop(bool imu_on=true){
+    if(imu_on){
+        if(IMU.accelerationAvailable() && 
+            IMU.gyroscopeAvailable()){
+                IMU.readAcceleration(acc_x, acc_y, acc_z);
+                IMU.readGyroscope(gyro_x, gyro_y, gyro_z);
 
-           filter.updateIMU(gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z);   
-           roll = filter.getRoll();
-           pitch = filter.getPitch();
-           yaw = filter.getYaw();
+                filter.updateIMU(gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z);   
 
-           String imu_data = imu.getData();
-           Serial.println(imu_data);
-           delay(500);
+                roll = filter.getRoll();
+                pitch = filter.getPitch();
+                yaw = filter.getYaw();
+
+                String imu_data = imu.getData();
+                Serial.println(imu_data);
+        }
+    }else{}
+        
+    
+    
             
-    }
+    
 }
 
 // TODO: Bug in roll, pitch and yaw
@@ -52,3 +60,5 @@ String Imu::getData(){
 
     return imu_data;
 }
+
+extern Imu imu;
