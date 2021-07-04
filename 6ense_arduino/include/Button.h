@@ -6,8 +6,8 @@
 class Button : I_Component {
 public:
     // Component Interface
-    void setup() override;
-    void loop() override;
+    void setup(bool button_on) override;
+    void loop(bool button_on) override;
 
     // Constructor
     Button(const int pin);

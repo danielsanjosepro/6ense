@@ -13,8 +13,8 @@ public:
     unsigned long time_current; // Current time since arduino started for velocity calculation
     unsigned long time_last = 0.00; // Last timestamp since velocity calculation
     // Component Interface
-    void setup() override;
-    void loop() override;
+    void setup(bool imu_on) override;
+    void loop(bool imu_on) override;
 
     // BTSender Interface
     String getData() override;
