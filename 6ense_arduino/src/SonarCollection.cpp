@@ -1,8 +1,8 @@
 #include "SonarCollection.h"
 
 SonarCollection::SonarCollection() : I_BTSender(1) {
-    sonarVector.push_back(Sonar(11, 12));
-    sonarVector.push_back(Sonar(2, 3));
+    sonarVector.push_back(Sonar(7, 8));
+    sonarVector.push_back(Sonar(9, 10));
 }
 
 void SonarCollection::setup(bool sonar_on=true){
@@ -13,7 +13,7 @@ void SonarCollection::setup(bool sonar_on=true){
             sonarIt.setup(sonar_on);
             i++;
         }
-        delay(2000);    
+        delay(2000);
     }else{
         Serial.println("SonarCollection OFF.");
     }
@@ -28,7 +28,6 @@ void SonarCollection::loop(bool sonar_on=true){
             sonarIt.loop(sonar_on);
             i++;
         }
-        delay(500);
     }else{}
 }
 

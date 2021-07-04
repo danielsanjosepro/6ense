@@ -7,8 +7,6 @@ Madgwick filter; // Init madwick filter
 
 Imu::Imu() : I_BTSender(3) {} // 3 for each axis
 
-
-
 void Imu::setup(bool imu_on=true){
     if(imu_on){
     while(!Serial);
@@ -25,20 +23,23 @@ void Imu::setup(bool imu_on=true){
 
 
 void Imu::loop(bool imu_on=true){
+    if(imu_on){
         if(IMU.accelerationAvailable() && 
-           IMU.gyroscopeAvailable()){
-            IMU.readAcceleration(acc_x, acc_y, acc_z);
-            IMU.readGyroscope(gyro_x, gyro_y, gyro_z);
+            IMU.gyroscopeAvailable()){
+                IMU.readAcceleration(acc_x, acc_y, acc_z);
+                IMU.readGyroscope(gyro_x, gyro_y, gyro_z);
 
-            filter.updateIMU(gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z);   
+                filter.updateIMU(gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z);   
 
-            roll = filter.getRoll();
-            pitch = filter.getPitch();
-            yaw = filter.getYaw();
+                roll = filter.getRoll();
+                pitch = filter.getPitch();
+                yaw = filter.getYaw();
 
-            String imu_data = imu.getData();
-            Serial.println(imu_data);
+                String imu_data = imu.getData();
+                Serial.println(imu_data);
         }
+    }else{}
+        
     
     
             

@@ -46,6 +46,10 @@ void Button::testMe(){
 
 void Button::loop(bool button_on=true){
     // Nothing to do here
+    if(button_on){
+        testMe();
+    }else{}
+    
 }
 
 /**

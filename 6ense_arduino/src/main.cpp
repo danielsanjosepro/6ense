@@ -22,8 +22,12 @@ SonarCollection sonarCollection = SonarCollection();
 GPS gps = GPS();
 Imu imu = Imu();
 // Coordinators & Timers:
-// Timer timer = Timer("micros");
-// Coordinator coordinator = Coordinator(1000); 
+Timer timer = Timer("millis");
+Coordinator buttonCoordinator =     Coordinator(buttonTime); 
+Coordinator displayCoordinator =    Coordinator(displayTime);
+Coordinator sonarCoordinator =      Coordinator(sonarTime);
+Coordinator imuCoordinator =        Coordinator(imuTime);
+Coordinator gpsCoordinator =        Coordinator(gpsTime);
 
 void setup()
 {
@@ -33,24 +37,42 @@ void setup()
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
 
-    //display.setup(display_on);
+    display.setup(display_on);
     imu.setup(imu_on);
-    //i2c_scanner.setup(i2c_scanner_on);
-    //button.setup(button_on);
-    //sonarCollection.setup(sonar_on);
-    //gps.setup(gps_on);
+    i2c_scanner.setup(i2c_scanner_on);
+    button.setup(button_on);
+    sonarCollection.setup(sonar_on);
+    gps.setup(gps_on);
 
     // Coordinator Inits:
-    // coordinator.init();
+    buttonCoordinator.init();
+    displayCoordinator.init();
+    imuCoordinator.init();
+    sonarCoordinator.init();
+    gpsCoordinator.init();
 } 
 
 void loop() {
-    //display.loop(display_on);
-    imu.loop(imu_on);
-    //i2c_scanner.loop(i2c_scanner_on);
-    //button.loop(button_on);
-    //button.testMe();
-    //sonarCollection.loop(sonar_on);
-    //gps.loop(gps_on);
+    if(displayCoordinator.allowsLoop())
+        display.loop(display_on);
+
+    if(imuCoordinator.allowsLoop()){
+        timer.tic();
+        imu.loop(imu_on);
+        timer.toc(true);
+    }
+
+    i2c_scanner.loop(i2c_scanner_on);
+
+    if(buttonCoordinator.allowsLoop())
+        button.loop(button_on);
+
+    if(sonarCoordinator.allowsLoop()){
+        timer.tic();
+        sonarCollection.loop(sonar_on);
+        timer.toc(true);
+    }
+    if(gpsCoordinator.allowsLoop())
+        gps.loop(gps_on);
 
 }
