@@ -8,8 +8,8 @@
 class GPS : public I_Component, public TinyGPSPlus{
 public:
     // Component Interface
-    void setup() override;
-    void loop() override;
+    void setup(bool gps_on) override;
+    void loop(bool gps_on) override;
 
     // constructor
     GPS();

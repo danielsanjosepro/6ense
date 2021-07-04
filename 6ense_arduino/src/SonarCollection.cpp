@@ -14,7 +14,9 @@ void SonarCollection::setup(bool sonar_on=true){
             i++;
         }
         delay(2000);    
-    }else{}
+    }else{
+        Serial.println("SonarCollection OFF.");
+    }
    
 }
 
