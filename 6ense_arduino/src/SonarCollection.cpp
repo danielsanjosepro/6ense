@@ -5,24 +5,29 @@ SonarCollection::SonarCollection() : I_BTSender(1) {
     sonarVector.push_back(Sonar(2, 3));
 }
 
-void SonarCollection::setup(){
-    int i = 1;  // only for debugging purposes
-    for(auto sonarIt : sonarVector){
-        Serial.print(String(i)+": ");
-        sonarIt.setup();
-        i++;
-    }
-    delay(2000);
+void SonarCollection::setup(bool sonar_on=true){
+    if(sonar_on){
+        int i = 1;  // only for debugging purposes
+        for(auto sonarIt : sonarVector){
+            Serial.print(String(i)+": ");
+            sonarIt.setup(sonar_on);
+            i++;
+        }
+        delay(2000);    
+    }else{}
+   
 }
 
-void SonarCollection::loop(){
-    int i = 1;  // only for debugging purposes
-    for(auto sonarIt : sonarVector){
-        Serial.print(String(i)+": ");
-        sonarIt.loop();
-        i++;
-    }
-    delay(500);
+void SonarCollection::loop(bool sonar_on=true){
+    if(sonar_on){
+        int i = 1;  // only for debugging purposes
+        for(auto sonarIt : sonarVector){
+            Serial.print(String(i)+": ");
+            sonarIt.loop(sonar_on);
+            i++;
+        }
+        delay(500);
+    }else{}
 }
 
 String SonarCollection::getData(){

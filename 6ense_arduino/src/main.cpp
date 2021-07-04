@@ -11,6 +11,7 @@
 #include "SonarCollection.h"
 #include "Timer.h"
 #include "Coordinator.h"
+#include "config.h"
 
 #define SERIAL_BAUDRATE 9600
 
@@ -29,23 +30,23 @@ void setup()
     
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
-    // i2c_scanner.setup();
-    // display.setup();
-    imu.setup();
-    // button.setup();
-    // sonar.setup();
-    // sonarCollection.setup();
+    // i2c_scanner.setup(i2c_scanner_on);
+    display.setup(display_on);
+    imu.setup(imu_on);
+    // button.setup(button_on);
+    // sonar.setup(sonar_on);
+    // sonarCollection.setup(sonar_on);
 
     // Coordinator Inits:
     // coordinator.init();
 } 
 
 void loop() {
-    // i2c_scanner.loop();
-    // display.loop();
-    imu.loop();
-    // button.loop();
+    // i2c_scanner.loop(i2c_scanner_on);
+    display.loop(display_on);
+    imu.loop(imu_on);
+    // button.loop(button_on);
     // button.testMe();
-    // sonar.loop();
-    // sonarCollection.loop();
+    // sonar.loop(sonar_on);
+    // sonarCollection.loop(sonar_on);
 }

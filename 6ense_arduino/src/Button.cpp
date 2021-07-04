@@ -23,7 +23,7 @@ Button button(2);
 
 Button::Button(int const pin) : pin(pin){}
 
-void Button::setup(){
+void Button::setup(bool button_on=true){
     pinMode(pin, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(pin), ISR_buttonChange, CHANGE);
     Serial.println("Button: Setup done");
@@ -39,7 +39,7 @@ void Button::testMe(){
     }
 }
 
-void Button::loop(){
+void Button::loop(bool button_on=true){
     // Nothing to do here
 }
 

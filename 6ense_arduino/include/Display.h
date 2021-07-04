@@ -7,8 +7,8 @@
 class Display : public I_Component, public LiquidCrystal_I2C {
 public:
     // Component Interface
-    void setup() override;
-    void loop() override;
+    void setup(bool display_on) override;
+    void loop(bool display_on) override;
 
     void testMe();
 

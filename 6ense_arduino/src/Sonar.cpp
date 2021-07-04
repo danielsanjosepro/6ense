@@ -7,7 +7,7 @@
 Sonar::Sonar(int trigPin, int echoPin):
     trigPin(trigPin), echoPin(echoPin) {}
 
-void Sonar::setup() {
+void Sonar::setup(bool sonar_on=true) {
     pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
     pinMode(echoPin, INPUT); // Sets the echoPin as an Input
     Serial.println("Sonar: Setup done: trigPin: " + String(trigPin)
@@ -16,7 +16,7 @@ void Sonar::setup() {
     );
 }
 
-void Sonar::loop() {
+void Sonar::loop(bool sonar_on=true) {
     // Nothing to do here TODO ddelete this
     updateDistance();
     Serial.println(distance);
