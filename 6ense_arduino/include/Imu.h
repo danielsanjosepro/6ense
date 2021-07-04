@@ -3,26 +3,18 @@
 #include <Arduino.h>
 #include "I_Component.h"
 #include "I_BTSender.h"
-#include <iostream>
-#include <tuple>
 
 
 class Imu : public I_Component, public I_BTSender {
 public:
-    float sensor_rate; // In units of Hz
-    unsigned long time_current; // Current time since arduino started for velocity calculation
-    unsigned long time_last = 0.00; // Last timestamp since velocity calculation
+    const float sensor_rate=104.00;
     // Component Interface
     void setup(bool imu_on) override;
     void loop(bool imu_on) override;
 
+    Imu();
     // BTSender Interface
     String getData() override;
-
-
-    // Constructor
-    Imu(const float& sensor_rate);
-
 
 private:
     float acc_x, acc_y, acc_z; // In units of g 

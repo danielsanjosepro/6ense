@@ -19,8 +19,8 @@
 auto i2c_scanner = I2CScanner();
 // auto i2c_scanner = I2CScanner();
 SonarCollection sonarCollection = SonarCollection();
-// Imu imu = Imu();
 GPS gps = GPS();
+Imu imu = Imu();
 // Coordinators & Timers:
 // Timer timer = Timer("micros");
 // Coordinator coordinator = Coordinator(1000); 
@@ -33,23 +33,24 @@ void setup()
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
 
-    display.setup(display_on);
+    //display.setup(display_on);
     imu.setup(imu_on);
-    button.setup(button_on);
-    sonarCollection.setup(sonar_on);
-    gps.setup(gps_on);
+    //i2c_scanner.setup(i2c_scanner_on);
+    //button.setup(button_on);
+    //sonarCollection.setup(sonar_on);
+    //gps.setup(gps_on);
 
     // Coordinator Inits:
     // coordinator.init();
 } 
 
 void loop() {
-    display.loop(display_on);
+    //display.loop(display_on);
     imu.loop(imu_on);
-    button.loop(button_on);
+    //i2c_scanner.loop(i2c_scanner_on);
+    //button.loop(button_on);
     //button.testMe();
-    sonarCollection.loop(sonar_on);
-    gps.loop(gps_on);
+    //sonarCollection.loop(sonar_on);
+    //gps.loop(gps_on);
 
-    delay(1000);
 }
