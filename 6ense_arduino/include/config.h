@@ -4,13 +4,13 @@
 
 #pragma once
 
-// bool i2c_scanner_on = false;
-bool display_on =       false;
-bool imu_on =           false;
-bool button_on =        false;
-bool sonar_on =         true;
-bool gps_on =           false;
-bool i2c_scanner_on =   false;
+bool displayOn =       false;
+bool imuOn =           false;
+bool buttonOn =        false;
+bool sonarOn =         false;
+bool gpsOn =           false;
+bool i2cScannerOn =    false;
+bool bluetoothOn =     false;
 
 int displayTime =       1000; 
 int imuTime =           100;

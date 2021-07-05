@@ -7,8 +7,8 @@
 class Sonar : public I_Component {
 public:
     // Component Interface
-    void setup(bool sonar_on) override;
-    void loop(bool sonar_on) override;
+    void setup(bool sonarOn) override;
+    void loop(bool sonarOn) override;
 
     //Constructor 
     Sonar(int trigPin, int echoPin);
