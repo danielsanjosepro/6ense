@@ -11,6 +11,7 @@ bool button_on =        false;
 bool sonar_on =         true;
 bool gps_on =           false;
 bool i2c_scanner_on =   false;
+bool bluetooth_on = true;
 
 int displayTime =       1000; 
 int imuTime =           100;
