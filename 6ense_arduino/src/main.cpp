@@ -37,12 +37,12 @@ void setup()
     // Setups:
     Serial.println("Board Type: " + String(BOARD));
 
-    display.setup(display_on);
-    imu.setup(imu_on);
-    i2c_scanner.setup(i2c_scanner_on);
-    button.setup(button_on);
-    sonarCollection.setup(sonar_on);
-    gps.setup(gps_on);
+    display.setup(displayOn);
+    imu.setup(imuOn);
+    i2c_scanner.setup(i2cScannerOn);
+    button.setup(buttonOn);
+    sonarCollection.setup(sonarOn);
+    gps.setup(gpsOn);
 
     // Coordinator Inits:
     buttonCoordinator.init();
@@ -54,25 +54,25 @@ void setup()
 
 void loop() {
     if(displayCoordinator.allowsLoop())
-        display.loop(display_on);
+        display.loop(displayOn);
 
     if(imuCoordinator.allowsLoop()){
         timer.tic();
-        imu.loop(imu_on);
+        imu.loop(imuOn);
         timer.toc(true);
     }
 
-    i2c_scanner.loop(i2c_scanner_on);
+    i2c_scanner.loop(i2cScannerOn);
 
     if(buttonCoordinator.allowsLoop())
-        button.loop(button_on);
+        button.loop(buttonOn);
 
     if(sonarCoordinator.allowsLoop()){
         timer.tic();
-        sonarCollection.loop(sonar_on);
+        sonarCollection.loop(sonarOn);
         timer.toc(true);
     }
     if(gpsCoordinator.allowsLoop())
-        gps.loop(gps_on);
+        gps.loop(gpsOn);
 
 }

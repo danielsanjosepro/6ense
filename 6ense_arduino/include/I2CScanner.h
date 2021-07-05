@@ -5,8 +5,8 @@
 
 class I2CScanner : I_Component{
 public:
-    void setup(bool i2c_scanner_on) override;
-    void loop(bool i2c_scanner_on) override;
+    void setup(bool i2cScannerOn) override;
+    void loop(bool i2cScannerOn) override;
 
 private:
 

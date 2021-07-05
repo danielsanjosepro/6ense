@@ -2,11 +2,11 @@
 
 Display display(0x27, 16, 2);
 
-Display::Display(const int i2c_addr, const int num_columns, const int num_lines) 
-    : LiquidCrystal_I2C(i2c_addr, num_columns, num_lines) {}
+Display::Display(const int i2cAddr, const int numColumns, const int numLines) 
+    : LiquidCrystal_I2C(i2cAddr, numColumns, numLines) {}
 
-void Display::setup(bool display_on=true){
-    if(display_on){
+void Display::setup(bool displayOn=true){
+    if(displayOn){
         this->init();                      
         this->backlight();
         this->createChar(0, logo);
@@ -19,8 +19,8 @@ void Display::setup(bool display_on=true){
     
 }
 
-void Display::loop(bool display_on=true) {
-    if(display_on){
+void Display::loop(bool displayOn=true) {
+    if(displayOn){
         testMe();
     }else{}
 }

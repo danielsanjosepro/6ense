@@ -4,16 +4,16 @@
 
 GPS::GPS() : I_BTSender(4) {} // latitude, longitude, velocity, time
 
-void GPS::setup(bool gps_on=true){
-        if(gps_on){
+void GPS::setup(bool gpsOn=true){
+        if(gpsOn){
             GPSSerial.begin(9600);
         }else{
             Serial.println("GPS OFF.");
         }
 }
 
-void GPS::loop(bool gps_on=true){
-    if(gps_on){
+void GPS::loop(bool gpsOn=true){
+    if(gpsOn){
         String gpsData = this->getData();
         Serial.println("Data: "+ gpsData);
     }else{}

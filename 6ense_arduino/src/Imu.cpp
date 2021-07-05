@@ -7,36 +7,36 @@ Madgwick filter; // Init madwick filter
 
 Imu::Imu() : I_BTSender(3) {} // 3 for each axis
 
-void Imu::setup(bool imu_on=true){
-    if(imu_on){
+void Imu::setup(bool imuOn=true){
+    if(imuOn){
     while(!Serial);
     Serial.println("Started IMU");
 
     if(!IMU.begin()){
         Serial.println("Failed to initialize IMU.");
     }
-    filter.begin(imu.sensor_rate);
+    filter.begin(imu.sensorRate);
     }else{
         Serial.println("IMU OFF.");
     }
 }
 
 
-void Imu::loop(bool imu_on=true){
-    if(imu_on){
+void Imu::loop(bool imuOn=true){
+    if(imuOn){
         if(IMU.accelerationAvailable() && 
             IMU.gyroscopeAvailable()){
-                IMU.readAcceleration(acc_x, acc_y, acc_z);
-                IMU.readGyroscope(gyro_x, gyro_y, gyro_z);
+                IMU.readAcceleration(accX, accY, accZ);
+                IMU.readGyroscope(gyroX, gyroY, gyroZ);
 
-                filter.updateIMU(gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z);   
+                filter.updateIMU(gyroX, gyroY, gyroZ, accX, accY, accZ);   
 
                 roll = filter.getRoll();
                 pitch = filter.getPitch();
                 yaw = filter.getYaw();
 
-                String imu_data = imu.getData();
-                Serial.println(imu_data);
+                String imuData = imu.getData();
+                Serial.println(imuData);
         }
     }else{}
         
@@ -46,19 +46,19 @@ void Imu::loop(bool imu_on=true){
     
 }
 
-// TODO: Bug in roll, pitch and yaw
+// TODO: Characteristics format for imu data
 String Imu::getData(){
-    String imu_data = "acc_x: "  + String(acc_x)  + "\t" 
-                    + "acc_y: "  + String(acc_y)  + "\t" 
-                    + "acc_z: "  + String(acc_z)  + "\n"
-                    + "gyro_x: " + String(gyro_x) + "\t"
-                    + "gyro_y: " + String(gyro_y) + "\t"
-                    + "gyro_z: " + String(gyro_z) + "\n"
+    String imuData = "accX: "  + String(accX)  + "\t" 
+                    + "accY: "  + String(accY)  + "\t" 
+                    + "accZ: "  + String(accZ)  + "\n"
+                    + "gyroX: " + String(gyroX) + "\t"
+                    + "gyroY: " + String(gyroY) + "\t"
+                    + "gyroZ: " + String(gyroZ) + "\n"
                     + "roll: "   + String(roll)   + "\t"
                     + "pitch: "  + String(pitch)  + "\t"
                     + "yaw: "    + String(yaw)    + "\n";
 
-    return imu_data;
+    return imuData;
 }
 
 extern Imu imu;

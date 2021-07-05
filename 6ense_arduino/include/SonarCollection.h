@@ -10,8 +10,8 @@
 class SonarCollection : public I_Component, public I_BTSender{
 public:
     // Component Interface
-    void setup(bool sonar_on) override;
-    void loop(bool sonar_on) override;
+    void setup(bool sonarOn) override;
+    void loop(bool sonarOn) override;
 
     // Blutooth Sender Interface
     String getData() override;
