@@ -6,29 +6,31 @@
 
 Bluetooth bluetooth = Bluetooth();
 
-std::vector<I_BTSender*> sensors {&gps, &imu};
+std::vector<I_BTSender*> sensors {&gps, &imu};  // List of all the sensors we want to send data from
 
 Bluetooth::Bluetooth(): I_Component(){
 } 
 
-BLEService mainService("0000");  // User defined service
-BLEStringCharacteristic gpsCharacteristic("1000",  // standard 16-bit characteristic UUID
-    BLERead, 13); // remote clients will only be able to read this
-BLEStringCharacteristic imuCharacteristic("1001",  // standard 16-bit characteristic UUID
-    BLERead, 13); // remote clients will only be able to read this
+BLEService mainService("0000");  // Main service where all characteristics/sensor data will be advertised
+BLEStringCharacteristic gpsCharacteristic("1000",  
+    BLERead, 13); 
+BLEStringCharacteristic imuCharacteristic("1001",  
+    BLERead, 13); 
 
 void Bluetooth::setup(bool bluetooth_on) {
-  Serial.begin(9600);    // initialize serial communication
+  Serial.begin(9600);    
 
-  if (!BLE.begin()) {   // initialize BLE
+  if (!BLE.begin()) {   
     Serial.println("starting BLE failed!");
     while (1);
   }
   
-  BLE.setLocalName("Nano33BLE");  // Set name for connection
+  BLE.setLocalName("Nano33BLE"); 
   BLE.setAdvertisedService(mainService);
 
-  mainService.addCharacteristic(gpsCharacteristic);
+// Here the sensor characteristics need to be added calling the getData method every BTSender has
+// TODO: Make it less ugly and hardcoded by iterating over the list of sensors and their characteristics
+  mainService.addCharacteristic(gpsCharacteristic);     
   gpsCharacteristic.setValue(gps.getData());
   mainService.addCharacteristic(imuCharacteristic);
   imuCharacteristic.setValue(imu.getData());
@@ -48,19 +50,17 @@ void Bluetooth::loop(bool bluetooth_on) {
   // if a central is connected to the peripheral:
   if (central) {
     Serial.print("Connected to central MAC: ");
-    // print the central's BT address:
     Serial.println(central.address());
-    // turn on the LED to indicate the connection:
-    digitalWrite(LED_BUILTIN, HIGH);
 
-    while (central.connected()){
-      gpsCharacteristic.setValue(gps.getData());
+    if (central.connected()){
+      gpsCharacteristic.setValue(gps.getData());    // Values are updated
       imuCharacteristic.setValue(imu.getData());
-    } // keep looping while connected
+    } 
     
-    // when the central disconnects, turn off the LED:
-    digitalWrite(LED_BUILTIN, LOW);
-    Serial.print("Disconnected from central MAC: ");
-    Serial.println(central.address());
+    else{
+        Serial.print("Disconnected from central MAC: ");
+        Serial.println(central.address());
+    }
+    
   }
 }
