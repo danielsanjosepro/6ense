@@ -1,8 +1,9 @@
 #include "SonarCollection.h"
 
 SonarCollection::SonarCollection() : I_BTSender(1) {
-    sonarVector.push_back(Sonar(7, 8));
-    sonarVector.push_back(Sonar(9, 10));
+    sonarVector.push_back(Sonar(7,  8));
+    sonarVector.push_back(Sonar(9,  10));
+    sonarVector.push_back(Sonar(11, 12));
 }
 
 void SonarCollection::setup(bool sonarOn=true){

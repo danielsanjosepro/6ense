@@ -15,11 +15,11 @@ public:
 
     // main functions: tic() to restart the timer, toc() to get the time
     void tic();
-    long toc(bool logDuration=false);
+    uint16_t toc(bool logDuration=false);
 
 private:
-    long start = 0;
-    long duration = 0;
-    int tocCounter = 0;
-    unsigned long (*timeNow)();
+    uint16_t start = 0;
+    uint16_t duration = 0;
+    uint16_t tocCounter = 0;
+    unsigned long int (*timeNow)();
 };

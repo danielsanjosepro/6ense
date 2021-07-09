@@ -57,9 +57,7 @@ void loop() {
         display.loop(displayOn);
 
     if(imuCoordinator.allowsLoop()){
-        timer.tic();
         imu.loop(imuOn);
-        timer.toc(true);
     }
 
     i2c_scanner.loop(i2cScannerOn);
@@ -68,9 +66,7 @@ void loop() {
         button.loop(buttonOn);
 
     if(sonarCoordinator.allowsLoop()){
-        timer.tic();
         sonarCollection.loop(sonarOn);
-        timer.toc(true);
     }
     if(gpsCoordinator.allowsLoop())
         gps.loop(gpsOn);

@@ -40,13 +40,13 @@ void Sonar::sendTrigPulse(){
  * in the echo pin. If the distance is out of range, it 
  * returns -1.
 */
-int Sonar::updateDistance(){
+uint16_t Sonar::updateDistance(){
     // Sends a trigger
     sendTrigPulse();
     // Reads the echoPin, returns the sound wave travel time in microseconds
     duration = pulseIn(echoPin, HIGH);  // in ms
     // Calculating the distance
-    int measuredDistance = duration * (soundSpeed/2);
+    uint16_t measuredDistance = duration * (soundSpeed/2);
     if(outOfRange(measuredDistance)){
         return distance = -1;
     }
@@ -56,7 +56,7 @@ int Sonar::updateDistance(){
 /**
  * Judges if the distance is valid
 */
-bool Sonar::outOfRange(int distance){
+bool Sonar::outOfRange(uint16_t distance){
     return distance > maxDistance;
 }
 
