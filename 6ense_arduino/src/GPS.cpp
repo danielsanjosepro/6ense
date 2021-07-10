@@ -14,8 +14,7 @@ void GPS::setup(bool gpsOn=true){
 
 void GPS::loop(bool gpsOn=true){
     if(gpsOn){
-        String gpsData = this->getData();
-        Serial.println("Data: "+ gpsData);
+        gpsCharacteristic.writeValue(getData());
     }else{}
 }
 

@@ -35,8 +35,7 @@ void Imu::loop(bool imuOn=true){
                 pitch = filter.getPitch();
                 yaw = filter.getYaw();
 
-                String imuData = imu.getData();
-                Serial.println(imuData);
+                imuCharacteristic.writeValue(getData());
         }
     }else{}
         

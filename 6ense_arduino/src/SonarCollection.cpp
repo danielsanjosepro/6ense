@@ -1,9 +1,11 @@
 #include "SonarCollection.h"
 
+int leftTrig = 7, leftEcho = 8, rightTrig = 9, rightEcho = 10, frontTrig = 11, frontEcho = 12;
+
 SonarCollection::SonarCollection() : I_BTSender(1) {
-    sonarVector.push_back(Sonar(7,  8));
-    sonarVector.push_back(Sonar(9,  10));
-    sonarVector.push_back(Sonar(11, 12));
+    sonarVector.push_back(Sonar(leftTrig,  leftEcho));
+    sonarVector.push_back(Sonar(rightTrig,  rightEcho));
+    sonarVector.push_back(Sonar(frontTrig, frontEcho));
 }
 
 void SonarCollection::setup(bool sonarOn=true){
@@ -23,16 +25,21 @@ void SonarCollection::setup(bool sonarOn=true){
 
 void SonarCollection::loop(bool sonarOn=true){
     if(sonarOn){
-        int i = 1;  // only for debugging purposes
+        /*int i = 1;  // only for debugging purposes
         for(auto sonarIt : sonarVector){
             Serial.print(String(i)+": ");
             sonarIt.loop(sonarOn);
             i++;
-        }
+        }*/
+        sonarCharacteristic.writeValue(getData());
     }else{}
 }
 
 String SonarCollection::getData(){
     //TODO: characteristics format for sonar data.
+    String sonarData = "";
+    for (auto sonar : sonarVector){
+        sonarData = sonarData + sonar.updateDistance();
+    }
     return "Data is coming.";
 }

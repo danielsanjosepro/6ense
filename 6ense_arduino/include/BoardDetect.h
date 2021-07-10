@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 
 #if defined(ARDUINO_ARDUINO_NANO33BLE)

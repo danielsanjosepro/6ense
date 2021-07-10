@@ -13,6 +13,7 @@
 #include "Coordinator.h"
 #include "config.h"
 #include "GPS.h"
+#include "Bluetooth.h"
 
 #define SERIAL_BAUDRATE 9600
 
@@ -21,6 +22,8 @@ auto i2c_scanner = I2CScanner();
 SonarCollection sonarCollection = SonarCollection();
 GPS gps = GPS();
 Imu imu = Imu();
+Bluetooth bluetooth = Bluetooth();
+
 // Coordinators & Timers:
 Timer timer = Timer("millis");
 Coordinator buttonCoordinator =     Coordinator(buttonTime); 
@@ -28,6 +31,7 @@ Coordinator displayCoordinator =    Coordinator(displayTime);
 Coordinator sonarCoordinator =      Coordinator(sonarTime);
 Coordinator imuCoordinator =        Coordinator(imuTime);
 Coordinator gpsCoordinator =        Coordinator(gpsTime);
+Coordinator bluetoothCoordinator =  Coordinator(bluetoothTime);
 
 void setup()
 {
@@ -43,6 +47,7 @@ void setup()
     button.setup(buttonOn);
     sonarCollection.setup(sonarOn);
     gps.setup(gpsOn);
+    bluetooth.setup(bluetoothOn);
 
     // Coordinator Inits:
     buttonCoordinator.init();
@@ -50,25 +55,39 @@ void setup()
     imuCoordinator.init();
     sonarCoordinator.init();
     gpsCoordinator.init();
+    bluetoothCoordinator.init();
 } 
 
 void loop() {
-    if(displayCoordinator.allowsLoop())
-        display.loop(displayOn);
+    BLEDevice central = BLE.central();
+    if (central) {
+        Serial.print("Connected to central: ");
+        Serial.println(central.address());
+        digitalWrite(LED_BUILTIN, HIGH);
 
-    if(imuCoordinator.allowsLoop()){
-        imu.loop(imuOn);
+        while (central.connected()) {
+            if(displayCoordinator.allowsLoop()){
+                display.loop(displayOn);
+            }
+            if(imuCoordinator.allowsLoop()){
+                imu.loop(imuOn);
+            }
+
+            i2c_scanner.loop(i2cScannerOn);
+
+            if(buttonCoordinator.allowsLoop()){
+                button.loop(buttonOn);
+            }
+            if(sonarCoordinator.allowsLoop()){
+                sonarCollection.loop(sonarOn);
+            }
+            if(gpsCoordinator.allowsLoop()){
+                gps.loop(gpsOn);
+            }
+        }
     }
-
-    i2c_scanner.loop(i2cScannerOn);
-
-    if(buttonCoordinator.allowsLoop())
-        button.loop(buttonOn);
-
-    if(sonarCoordinator.allowsLoop()){
-        sonarCollection.loop(sonarOn);
+    else{
+        Serial.print("Disconnected from central: ");
+        Serial.println(central.address());
     }
-    if(gpsCoordinator.allowsLoop())
-        gps.loop(gpsOn);
-
 }

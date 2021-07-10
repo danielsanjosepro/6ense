@@ -1,5 +1,6 @@
 #pragma once
 #include <Arduino.h>
+#include "Bluetooth.h"
 
 class I_BTSender {  // theoretically not an Interface but almost
 public:
@@ -20,4 +21,4 @@ CODE EXAMPLE WITH VECTORS AND THIS BASE CLASS TYPE:
     for(auto &obj : my_vector){
         Serial.println(obj->numOfCharacteristics);
     }
-*/
+*/  
