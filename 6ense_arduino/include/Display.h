@@ -7,13 +7,13 @@
 class Display : public I_Component, public LiquidCrystal_I2C {
 public:
     // Component Interface
-    void setup(bool display_on) override;
-    void loop(bool display_on) override;
+    void setup(bool displayOn) override;
+    void loop(bool displayOn) override;
 
     void testMe();
 
     // constructor
-    Display(const int i2c_addr, const int num_columns, const int num_lines);
+    Display(const int i2cAddr, const int numColumns, const int numLines);
 
     //LiquidCrystal_I2C lcd;
 

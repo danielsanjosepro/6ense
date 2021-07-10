@@ -6,8 +6,8 @@
 class Button : I_Component {
 public:
     // Component Interface
-    void setup(bool button_on) override;
-    void loop(bool button_on) override;
+    void setup(bool buttonOn) override;
+    void loop(bool buttonOn) override;
 
     // Constructor
     Button(const int pin);
@@ -18,15 +18,15 @@ public:
     void testMe();
 
 private:
-    int pin;  // should be attached to an interrupt
+    uint8_t pin;  // should be attached to an interrupt
     
 public:
     // debouncing variables (must be public, or at least it makes it easier)
     volatile bool pressed = false;
     volatile bool wasPressed = false;
-    volatile unsigned long pressedDuration = 0;
-    volatile unsigned long firstTimePressed = 0;
-    static const long debouncingTime = 20;  // milli s
+    volatile uint16_t pressedDuration = 0;
+    volatile uint16_t firstTimePressed = 0;
+    static const uint8_t debouncingTime = 20;  // milli s
 };
 
 extern Button button;

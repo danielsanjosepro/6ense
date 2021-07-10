@@ -7,8 +7,8 @@
 class Bluetooth : public I_Component{
 public:
     // Component Interface
-    void setup(bool bluetooth_on) override;
-    void loop(bool bluetooth_on) override;
+    void setup(bool bluetoothOn) override;
+    void loop(bool bluetoothOn) override;
 
     // constructor
     Bluetooth();

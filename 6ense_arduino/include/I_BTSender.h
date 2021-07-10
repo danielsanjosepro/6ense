@@ -4,7 +4,7 @@
 class I_BTSender {  // theoretically not an Interface but almost
 public:
     virtual String getData() = 0;
-    int numOfCharacteristics;
+    uint8_t numOfCharacteristics;
 
     // Constructor
     I_BTSender(int numOfCharacteristics);

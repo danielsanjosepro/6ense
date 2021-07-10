@@ -1,8 +1,8 @@
 #include "I2CScanner.h"
 #include <Wire.h>
 
-void I2CScanner::setup(bool i2c_scanner_on=true){
-    if(i2c_scanner_on){
+void I2CScanner::setup(bool i2cScannerOn=true){
+    if(i2cScannerOn){
         Serial.println();
         Serial.println("I2C scanner. Scanning ...");
         byte count = 0;
@@ -32,4 +32,4 @@ void I2CScanner::setup(bool i2c_scanner_on=true){
     
     
 
-void I2CScanner::loop(bool i2c_scanner_on=true) {}
+void I2CScanner::loop(bool i2cScannerOn=true) {}

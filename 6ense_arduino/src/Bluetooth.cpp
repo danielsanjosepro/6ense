@@ -17,7 +17,7 @@ BLEStringCharacteristic gpsCharacteristic("1000",
 BLEStringCharacteristic imuCharacteristic("1001",  
     BLERead, 13); 
 
-void Bluetooth::setup(bool bluetooth_on) {
+void Bluetooth::setup(bool bluetoothOn) {
   Serial.begin(9600);    
 
   if (!BLE.begin()) {   
@@ -44,7 +44,7 @@ void Bluetooth::setup(bool bluetooth_on) {
 }
 
 
-void Bluetooth::loop(bool bluetooth_on) {
+void Bluetooth::loop(bool bluetoothOn) {
   BLEDevice central = BLE.central();  // Wait for a BLE central to connect
 
   // if a central is connected to the peripheral:

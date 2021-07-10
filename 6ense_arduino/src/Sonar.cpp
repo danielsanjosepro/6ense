@@ -7,19 +7,22 @@
 Sonar::Sonar(int trigPin, int echoPin):
     trigPin(trigPin), echoPin(echoPin) {}
 
-void Sonar::setup(bool sonar_on=true) {
-    pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
-    pinMode(echoPin, INPUT); // Sets the echoPin as an Input
-    Serial.println("Sonar: Setup done: trigPin: " + String(trigPin)
-        + ", echoPin: " + String(echoPin)
-        + ", soundSpeed: " + String(soundSpeed)
-    );
+void Sonar::setup(bool sonarOn=true) {
+    if(sonarOn){
+        pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+        pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+        Serial.println("Sonar: Setup done: trigPin: " + String(trigPin) + ", echoPin: " 
+                       + String(echoPin) + ", soundSpeed: " + String(soundSpeed));
+    }else{
+        Serial.println("Sonar OFF.");
+        }
 }
 
-void Sonar::loop(bool sonar_on=true) {
-    // Nothing to do here TODO ddelete this
-    updateDistance();
-    Serial.println(distance);
+void Sonar::loop(bool sonarOn=true) {
+    if(sonarOn){
+        updateDistance();
+        Serial.println(distance);
+    }else{}
 }
 
 void Sonar::sendTrigPulse(){
@@ -37,13 +40,13 @@ void Sonar::sendTrigPulse(){
  * in the echo pin. If the distance is out of range, it 
  * returns -1.
 */
-int Sonar::updateDistance(){
+uint16_t Sonar::updateDistance(){
     // Sends a trigger
     sendTrigPulse();
     // Reads the echoPin, returns the sound wave travel time in microseconds
     duration = pulseIn(echoPin, HIGH);  // in ms
     // Calculating the distance
-    int measuredDistance = duration * (soundSpeed/2);
+    uint16_t measuredDistance = duration * (soundSpeed/2);
     if(outOfRange(measuredDistance)){
         return distance = -1;
     }
@@ -53,7 +56,7 @@ int Sonar::updateDistance(){
 /**
  * Judges if the distance is valid
 */
-bool Sonar::outOfRange(int distance){
+bool Sonar::outOfRange(uint16_t distance){
     return distance > maxDistance;
 }
 
