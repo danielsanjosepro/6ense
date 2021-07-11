@@ -13,12 +13,17 @@ extern bool gpsOn;
 extern bool i2cScannerOn;
 extern bool bluetoothOn;
 
+extern bool scoreOn;
+extern bool sensorPrintOn;
+
 extern char16_t displayTime; 
 extern char16_t imuTime;
 extern char16_t buttonTime;
 extern char16_t sonarTime;
 extern char16_t gpsTime;
 extern char16_t scoreTime;
+extern char16_t sensorPrintTime;
+
 // Score parameters
 extern bool shouldPrintScoresOnDisplay;
 extern bool shouldPrintSensorValOnDisplay;

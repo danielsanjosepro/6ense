@@ -9,7 +9,7 @@ Imu::Imu() : I_BTSender(3) {} // 3 for each axis
 
 void Imu::setup(bool imuOn=true){
     if(imuOn){
-    while(!Serial);
+    // while(!Serial);
     Serial.println("Started IMU");
 
     if(!IMU.begin()){
@@ -39,7 +39,12 @@ void Imu::loop(bool imuOn=true){
                 Serial.println(imuData);
 
                 updateScore();
+        }else if (IMU.accelerationAvailable())  // but not gyro
+        {
+            IMU.readAcceleration(accX, accY, accZ);
+            updateScore();
         }
+        
     }else{}
 }
 

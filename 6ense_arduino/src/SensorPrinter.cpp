@@ -5,10 +5,10 @@
 #include "SonarCollection.h"
 #include "Imu.h"
 
-SensorPrinter sensorPrinter = SensorPrinter();
-
 void SensorPrinter::setup(bool sensorPrinterOn){
-    //nothing to do here
+    if(sensorPrintOn){
+        // nothing to do here
+    }else{}
 }
 
 void SensorPrinter::loop(bool sensorPrinterOn){
@@ -32,7 +32,8 @@ void SensorPrinter::printSensorValuesOnDisplay(){
             break;
         case SONAR:
             for(auto sonarIt : sonarCollection.sonarVector){
-                sensorValString += String(sonarIt.distance);
+                Serial.println(String(sonarIt.updateDistance()));
+                sensorValString += String(sonarIt.updateDistance()) + "|";
             }
             display.printSensorValues("Sonar: ", sensorValString);
             break;
@@ -40,7 +41,7 @@ void SensorPrinter::printSensorValuesOnDisplay(){
             sensorValString = String(imu.accX) + "|"
                             + String(imu.accY) + "|"
                             + String(imu.accZ);
-            display.printScore("Accel: ", sensorValString);
+            display.printSensorValues("Accel: ", sensorValString);
             break;
         default:
             break;

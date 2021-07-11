@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "config.h"
 
 /*
  * TODO Undebounced button!!! Should be better implemented. Now it only detects,
@@ -53,7 +54,10 @@ void Button::testMe(){
 void Button::loop(bool buttonOn=true){
     // Nothing to do here
     if(buttonOn){
-        // testMe();
+        if(button.wasPressedOnceLong()){
+            shouldPrintScoresOnDisplay =     !shouldPrintScoresOnDisplay;
+            shouldPrintSensorValOnDisplay =  !shouldPrintSensorValOnDisplay;
+        }
     }else{}
     
 }

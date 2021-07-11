@@ -15,7 +15,7 @@ void Sonar::setup(bool sonarOn=true) {
                        + String(echoPin) + ", soundSpeed: " + String(soundSpeed));
     }else{
         Serial.println("Sonar OFF.");
-        }
+    }
 }
 
 void Sonar::loop(bool sonarOn=true) {
@@ -48,9 +48,11 @@ uint16_t Sonar::updateDistance(){
     // Calculating the distance
     uint16_t measuredDistance = duration * (soundSpeed/2);
     if(outOfRange(measuredDistance)){
-        return distance = -1;
+        distance = -1;
+        return distance;
     }
-    return distance = measuredDistance;
+    distance = measuredDistance;
+    return distance;
 }
 
 /**

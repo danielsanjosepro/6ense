@@ -4,9 +4,9 @@
 #include "Display.h"
 
 SonarCollection::SonarCollection() : I_BTSender(1) {
-    sonarVector.push_back(Sonar(8, 7));
     sonarVector.push_back(Sonar(10, 9));
     sonarVector.push_back(Sonar(12, 11));
+    sonarVector.push_back(Sonar(8, 7));
 }
 
 void SonarCollection::setup(bool sonarOn=true){
@@ -17,7 +17,6 @@ void SonarCollection::setup(bool sonarOn=true){
             sonarIt.setup(sonarOn);
             i++;
         }
-        delay(2000);
     }else{
         Serial.println("SonarCollection OFF.");
     }
@@ -30,11 +29,7 @@ void SonarCollection::loop(bool sonarOn=true){
         for(auto sonarIt : sonarVector){
             printString += String(sonarIt.updateDistance()) + "|";
         }
-        if(shouldPrintScoresOnDisplay){
-            display.printSensorValues("SonarCollection", printString);
-        }else{
-            Serial.println("SonarCollection: " + printString);
-        }
+        Serial.println("SonarCollection: " + printString);
         updateScore();
     }else{}
 }
