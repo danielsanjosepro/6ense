@@ -13,6 +13,8 @@
 #include "Coordinator.h"
 #include "config.h"
 #include "GPS.h"
+#include "Scorer.h"
+#include "SensorPrinter.h"
 
 #define SERIAL_BAUDRATE 9600
 
@@ -21,6 +23,9 @@ auto i2c_scanner = I2CScanner();
 SonarCollection sonarCollection = SonarCollection();
 GPS gps = GPS();
 Imu imu = Imu();
+SensorPrinter sensorPrinter = SensorPrinter();
+// Scorer
+Scorer scorer = Scorer(100);
 // Coordinators & Timers:
 Timer timer = Timer("millis");
 Coordinator buttonCoordinator =     Coordinator(buttonTime); 
@@ -28,6 +33,8 @@ Coordinator displayCoordinator =    Coordinator(displayTime);
 Coordinator sonarCoordinator =      Coordinator(sonarTime);
 Coordinator imuCoordinator =        Coordinator(imuTime);
 Coordinator gpsCoordinator =        Coordinator(gpsTime);
+Coordinator scoreCoordinator =      Coordinator(scoreTime);
+Coordinator sensorPrintCoordinator= Coordinator(sensorPrintTime);
 
 void setup()
 {
@@ -43,6 +50,7 @@ void setup()
     button.setup(buttonOn);
     sonarCollection.setup(sonarOn);
     gps.setup(gpsOn);
+    sensorPrinter.setup(sensorPrintOn);
 
     // Coordinator Inits:
     buttonCoordinator.init();
@@ -50,16 +58,16 @@ void setup()
     imuCoordinator.init();
     sonarCoordinator.init();
     gpsCoordinator.init();
-} 
+    scoreCoordinator.init();
+    sensorPrintCoordinator.init();
+}
 
 void loop() {
     if(displayCoordinator.allowsLoop())
         display.loop(displayOn);
 
     if(imuCoordinator.allowsLoop()){
-        timer.tic();
         imu.loop(imuOn);
-        timer.toc(true);
     }
 
     i2c_scanner.loop(i2cScannerOn);
@@ -68,11 +76,19 @@ void loop() {
         button.loop(buttonOn);
 
     if(sonarCoordinator.allowsLoop()){
-        timer.tic();
         sonarCollection.loop(sonarOn);
-        timer.toc(true);
     }
+
     if(gpsCoordinator.allowsLoop())
         gps.loop(gpsOn);
+
+    if(scoreCoordinator.allowsLoop() and scoreOn){
+        scorer.updateScore();
+        scorer.printScores();
+    }
+
+    if(sensorPrintCoordinator.allowsLoop()){
+        sensorPrinter.loop(sensorPrintOn);
+    }
 
 }

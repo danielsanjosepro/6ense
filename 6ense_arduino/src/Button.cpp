@@ -1,4 +1,11 @@
 #include "Button.h"
+#include "config.h"
+
+/*
+ * TODO Undebounced button!!! Should be better implemented. Now it only detects,
+ * if the button was pressed. After calling the function wasPressedOnce, it returns 
+ * to the state non pressed.
+ */ 
 
 /**
  * Interrupt that gets triggered if the button changes.
@@ -47,7 +54,10 @@ void Button::testMe(){
 void Button::loop(bool buttonOn=true){
     // Nothing to do here
     if(buttonOn){
-        testMe();
+        if(button.wasPressedOnceLong()){
+            shouldPrintScoresOnDisplay =     !shouldPrintScoresOnDisplay;
+            shouldPrintSensorValOnDisplay =  !shouldPrintSensorValOnDisplay;
+        }
     }else{}
     
 }

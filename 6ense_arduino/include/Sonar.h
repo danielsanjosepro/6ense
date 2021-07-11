@@ -14,23 +14,23 @@ public:
     Sonar(int trigPin, int echoPin);
 
     // "API": some functions to use the Sonar module
-    int updateDistance();
+    uint16_t updateDistance();  // TODO could be uint8
     void printDistanceOnDisplay();
+    uint16_t distance = 0;
 
 private:
     // Pin Numbers
-    int trigPin;
-    int echoPin;
+    uint8_t trigPin;
+    uint8_t echoPin;
 
     // Variables used in computations:
-    long duration = 0;
-    long distance = 0;
-    long maxDistance = 1000; // cm
-    const float soundSpeed = 0.034; 
+    uint16_t duration = 0;
+    uint16_t maxDistance = 300; // cm
+    const float soundSpeed = 0.034;  // TODO other data type for this
 
     // Some functions for internal use
     void sendTrigPulse();
-    bool outOfRange(int distance);
+    bool outOfRange(uint16_t distance);
 };
 
 // extern Sonar sonar;  // only if 1 Sonar is used

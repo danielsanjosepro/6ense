@@ -1,19 +1,43 @@
+
 /**
  * @brief Config file for setup variables and testing
  */
+#ifndef __config_h__
+#define __config_h__
 
-#pragma once
+extern bool displayOn;
+extern bool imuOn;
+extern bool buttonOn;
+extern bool sonarOn;
+extern bool gpsOn;
+extern bool i2cScannerOn;
+extern bool bluetoothOn;
 
-bool displayOn =       false;
-bool imuOn =           false;
-bool buttonOn =        false;
-bool sonarOn =         false;
-bool gpsOn =           false;
-bool i2cScannerOn =    false;
-bool bluetoothOn =     false;
+extern bool scoreOn;
+extern bool sensorPrintOn;
 
-int displayTime =       1000; 
-int imuTime =           100;
-int buttonTime =        1000;
-int sonarTime =         1000;
-int gpsTime =           1000;
+extern char16_t displayTime; 
+extern char16_t imuTime;
+extern char16_t buttonTime;
+extern char16_t sonarTime;
+extern char16_t gpsTime;
+extern char16_t scoreTime;
+extern char16_t sensorPrintTime;
+
+// Score parameters
+extern bool shouldPrintScoresOnDisplay;
+extern bool shouldPrintSensorValOnDisplay;
+
+extern float speedWeight;
+extern float distanceWeight;
+extern float breakWeight;
+extern float totalWeight;
+
+// distance parameters
+extern char criticalDistance;
+extern float distanceImportance; 
+// other Parameters
+extern float criticalSpeed;
+extern float criticalAccel;
+
+#endif

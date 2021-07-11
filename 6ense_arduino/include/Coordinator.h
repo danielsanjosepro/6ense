@@ -18,6 +18,6 @@ public:
     void init();
     bool allowsLoop();
 private:
-    int period;
+    uint16_t period;
     Timer timer;
 };

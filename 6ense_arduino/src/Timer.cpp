@@ -17,7 +17,7 @@ void Timer::tic(){
     tocCounter = 0;
 }
 
-long Timer::toc(bool logDuration){
+uint16_t Timer::toc(bool logDuration){
     duration = (*timeNow)() - start;
     if(logDuration)
         Serial.println("*Toc* Duration: " + String(duration));
