@@ -1,6 +1,6 @@
 # 6ense
 ## Prototype:
-![prototype](images/6ense_collage.jpg)
+![prototype](images/6ense collage-51.jpg)
 ## Board:
 ![pinout](images/6ense_circuit.jpg)
 
