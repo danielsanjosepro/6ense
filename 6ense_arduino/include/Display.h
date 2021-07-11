@@ -17,8 +17,6 @@ public:
     // constructor
     Display(const int i2cAddr, const int numColumns, const int numLines);
 
-    //LiquidCrystal_I2C lcd;
-
 private:
     uint8_t logo[8] = {
 	0b00011,

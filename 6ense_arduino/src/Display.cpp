@@ -20,7 +20,9 @@ void Display::setup(bool displayOn=true){
 }
 
 void Display::loop(bool displayOn=true) {
-    if(displayOn) {} else{}
+    if(displayOn) {
+        
+    } else{}
 }
 
 void Display::testMe(){

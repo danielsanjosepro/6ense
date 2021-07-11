@@ -26,7 +26,6 @@ void SonarCollection::setup(bool sonarOn=true){
 
 void SonarCollection::loop(bool sonarOn=true){
     if(sonarOn){
-        int i = 1;  // only for debugging purposes
         String printString = "|";
         for(auto sonarIt : sonarVector){
             printString += String(sonarIt.updateDistance()) + "|";
