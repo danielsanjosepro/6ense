@@ -1,5 +1,7 @@
 #include "SonarCollection.h"
 
+#include "config.h"
+
 SonarCollection::SonarCollection() : I_BTSender(1) {
     sonarVector.push_back(Sonar(8, 7));
     sonarVector.push_back(Sonar(10, 9));
@@ -25,7 +27,7 @@ void SonarCollection::loop(bool sonarOn=true){
     if(sonarOn){
         int i = 1;  // only for debugging purposes
         for(auto sonarIt : sonarVector){
-            //Serial.print(String(i)+": ");
+            Serial.print(String(i)+": ");
             sonarIt.loop(sonarOn);
             i++;
         }
@@ -42,9 +44,8 @@ String SonarCollection::getData(){
 //TODO: Add threashold and weight to config
 void SonarCollection::updateScore(){
     for (auto sonar:sonarVector){
-        if(sonar.updateDistance() < 150){
-            //Serial.println((150-float(sonar.updateDistance()))/10);
-            scorer.distanceScore -= (150-float(sonar.updateDistance()))/1000;
+        if(sonar.updateDistance() < criticalDistance){
+            scorer.distanceScore -= distanceImportance * (criticalDistance-float(sonar.updateDistance()))/criticalDistance;
             if (scorer.distanceScore < 0){
                 scorer.distanceScore = 0;
             }

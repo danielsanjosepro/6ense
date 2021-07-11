@@ -71,12 +71,15 @@ void loop() {
         button.loop(buttonOn);
 
     if(sonarCoordinator.allowsLoop()){
+        Serial.print("SonarCollection: ");
         sonarCollection.loop(sonarOn);
+        Serial.println();
     }
+
     if(gpsCoordinator.allowsLoop())
         gps.loop(gpsOn);
+
     if(scoreCoordinator.allowsLoop()){
-        Serial.println("Distance Score: " + String(scorer.distanceScore));
         scorer.updateScore();
         scorer.printScores();
     }
