@@ -29,6 +29,8 @@ void SonarCollection::loop(bool sonarOn=true){
             sonarIt.loop(sonarOn);
             i++;
         }
+
+    updateScore(scorer);
     }else{}
 }
 

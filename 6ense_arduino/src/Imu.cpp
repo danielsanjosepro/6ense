@@ -37,6 +37,8 @@ void Imu::loop(bool imuOn=true){
 
                 String imuData = imu.getData();
                 Serial.println(imuData);
+
+                updateScore(scorer);
         }
     }else{}
         
