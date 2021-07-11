@@ -4,24 +4,28 @@
  */
 
 bool displayOn =       true;
-bool imuOn =           false;
+bool imuOn =           true;
 bool buttonOn =        true;
 bool sonarOn =         true;
 bool gpsOn =           false;
 bool i2cScannerOn =    false;
 bool bluetoothOn =     false;
 
-char16_t displayTime =  1000; 
-char16_t imuTime =      1000;
-char16_t buttonTime =   1000;
-char16_t sonarTime =    2000;
-char16_t gpsTime =      100;
-char16_t scoreTime =    2000;
+bool scoreOn =         true;
+bool sensorPrintOn =   true;
+
+char16_t displayTime =      1000; 
+char16_t imuTime =          100;
+char16_t buttonTime =       100;
+char16_t sonarTime =        500;
+char16_t gpsTime =          1000;
+char16_t scoreTime =        1000;
+char16_t sensorPrintTime =  1000;
 
 // Score parameters
-bool shouldPrintScoresOnDisplay =     true;
-bool shouldPrintSensorValOnDisplay =  false;
- 
+bool shouldPrintScoresOnDisplay =     false;
+bool shouldPrintSensorValOnDisplay =  true;
+
 float speedWeight =             1;
 float distanceWeight =          1;
 float breakWeight =             1;

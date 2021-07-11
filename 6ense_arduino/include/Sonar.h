@@ -16,6 +16,7 @@ public:
     // "API": some functions to use the Sonar module
     uint16_t updateDistance();  // TODO could be uint8
     void printDistanceOnDisplay();
+    uint16_t distance = 0;
 
 private:
     // Pin Numbers
@@ -24,7 +25,6 @@ private:
 
     // Variables used in computations:
     uint16_t duration = 0;
-    uint16_t distance = 0;
     uint16_t maxDistance = 300; // cm
     const float soundSpeed = 0.034;  // TODO other data type for this
 

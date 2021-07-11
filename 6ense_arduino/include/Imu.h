@@ -15,8 +15,8 @@ public:
     Imu();
     // BTSender Interface
     String getData() override;
+    void updateScore() override;
 
-private:
     float accX, accY, accZ; // In units of g 
     float gyroX, gyroY, gyroZ; // In units of degrees per sec
     float roll, pitch, yaw; // Orientation angles

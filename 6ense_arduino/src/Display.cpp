@@ -11,7 +11,7 @@ void Display::setup(bool displayOn=true){
         this->backlight();
         this->createChar(0, logo);
         // test the  LCD:
-        // testMe();
+        testMe();
         Serial.println("Display: Setup done");
     }else{
         Serial.println("Display OFF.");
@@ -20,9 +20,9 @@ void Display::setup(bool displayOn=true){
 }
 
 void Display::loop(bool displayOn=true) {
-    if(displayOn){
-        testMe();
-    }else{}
+    if(displayOn) {
+        
+    } else{}
 }
 
 void Display::testMe(){
@@ -32,4 +32,20 @@ void Display::testMe(){
     this->print("ense: safety");
     this->setCursor(3, 1);
     this->print("for drivers");
+}
+
+void Display::printSensorValues(String sensorName, String sensorValue){
+    this->clear();
+    this->setCursor(0, 0);
+    this->print(sensorName);
+    this->setCursor(0, 1);
+    this->print(sensorValue);
+}
+
+void Display::printScore(String scoreName, String scoreValue){
+    this->clear();
+    this->setCursor(0, 0);
+    this->print(scoreName);
+    this->setCursor(0, 1);
+    this->print("-> "+scoreValue);
 }

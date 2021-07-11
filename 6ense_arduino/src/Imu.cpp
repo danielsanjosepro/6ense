@@ -9,7 +9,7 @@ Imu::Imu() : I_BTSender(3) {} // 3 for each axis
 
 void Imu::setup(bool imuOn=true){
     if(imuOn){
-    while(!Serial);
+    // while(!Serial);
     Serial.println("Started IMU");
 
     if(!IMU.begin()){
@@ -37,13 +37,15 @@ void Imu::loop(bool imuOn=true){
 
                 String imuData = imu.getData();
                 Serial.println(imuData);
+
+                updateScore();
+        }else if (IMU.accelerationAvailable())  // but not gyro
+        {
+            IMU.readAcceleration(accX, accY, accZ);
+            updateScore();
         }
-    }else{}
         
-    
-    
-            
-    
+    }else{}
 }
 
 // TODO: Characteristics format for imu data
@@ -61,4 +63,7 @@ String Imu::getData(){
     return imuData;
 }
 
-extern Imu imu;
+//TODO: Find useful way of scoring IMU
+void Imu::updateScore(){
+    
+}

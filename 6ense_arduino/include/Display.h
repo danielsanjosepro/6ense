@@ -11,11 +11,11 @@ public:
     void loop(bool displayOn) override;
 
     void testMe();
+    void printSensorValues(String sensorName, String sensorValue);
+    void printScore(String scoreName, String scoreValue);
 
     // constructor
     Display(const int i2cAddr, const int numColumns, const int numLines);
-
-    //LiquidCrystal_I2C lcd;
 
 private:
     uint8_t logo[8] = {
