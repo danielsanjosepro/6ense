@@ -7,8 +7,8 @@
 bool displayOn =       false;
 bool imuOn =           true;
 bool buttonOn =        false;
-bool sonarOn =         false;
-bool gpsOn =           false;
+bool sonarOn =         true;
+bool gpsOn =           true;
 bool i2cScannerOn =    false;
 bool bluetoothOn =     true;
 

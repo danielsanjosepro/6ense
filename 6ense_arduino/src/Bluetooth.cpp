@@ -51,13 +51,18 @@ void Bluetooth::setup(bool bluetoothOn) {
         Serial.print("Connected to central MAC: ");
         Serial.println(central.address());
 
-        if (central.connected()){
-            gpsCharacteristic.setValue(gps.getData());    // Values are updated for the first time, after this they get updated in each sensor object
-            imuCharacteristic.setValue(imu.getData());
-            sonarCharacteristic.setValue(sonarCollection.getData());
+        /*if (central.connected()){
+            gpsCharacteristic.writeValue(gps.getData());    // Values are updated for the first time, after this they get updated in each sensor object
+            imuCharacteristic.writeValue(imu.getData());
+            sonarCharacteristic.writeValue(sonarCollection.getData());
         } 
         
         else{
+            Serial.print("Disconnected from central MAC: ");
+            Serial.println(central.address());
+        }*/
+
+        if (!central.connected()){
             Serial.print("Disconnected from central MAC: ");
             Serial.println(central.address());
         }

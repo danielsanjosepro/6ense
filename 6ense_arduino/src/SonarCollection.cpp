@@ -39,7 +39,7 @@ String SonarCollection::getData(){
     //TODO: characteristics format for sonar data.
     String sonarData = "";
     for (auto sonar : sonarVector){
-        sonarData = sonarData + sonar.updateDistance();
+        sonarData = sonarData + " " + String(sonar.updateDistance());
     }
-    return "Data is coming.";
+    return sonarData;
 }
