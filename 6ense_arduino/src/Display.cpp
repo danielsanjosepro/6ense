@@ -37,7 +37,7 @@ void Display::printSensorValues(String sensorName, String sensorValue){
     this->setCursor(0, 0);
     this->print(sensorName);
     this->setCursor(0, 1);
-    this->print("-> "+sensorValue);
+    this->print(sensorValue);
 }
 
 void Display::printScore(String scoreName, String scoreValue){

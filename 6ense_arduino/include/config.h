@@ -21,7 +21,7 @@ extern char16_t gpsTime;
 extern char16_t scoreTime;
 // Score parameters
 extern bool shouldPrintScoresOnDisplay;
-extern bool shoardPrintSensorValOnDisplay;
+extern bool shouldPrintSensorValOnDisplay;
 
 extern float speedWeight;
 extern float distanceWeight;

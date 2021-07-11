@@ -20,7 +20,7 @@ char16_t scoreTime =    2000;
 
 // Score parameters
 bool shouldPrintScoresOnDisplay =     false;
-bool shoardPrintSensorValOnDisplay =  true;
+bool shouldPrintSensorValOnDisplay =  true;
 
 float speedWeight =             1;
 float distanceWeight =          1;

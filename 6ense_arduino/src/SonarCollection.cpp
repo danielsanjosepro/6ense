@@ -1,6 +1,7 @@
 #include "SonarCollection.h"
 
 #include "config.h"
+#include "Display.h"
 
 SonarCollection::SonarCollection() : I_BTSender(1) {
     sonarVector.push_back(Sonar(8, 7));
@@ -26,13 +27,16 @@ void SonarCollection::setup(bool sonarOn=true){
 void SonarCollection::loop(bool sonarOn=true){
     if(sonarOn){
         int i = 1;  // only for debugging purposes
+        String printString = "|";
         for(auto sonarIt : sonarVector){
-            Serial.print(String(i)+": ");
-            sonarIt.loop(sonarOn);
-            i++;
+            printString += String(sonarIt.updateDistance()) + "|";
         }
-
-    updateScore();
+        if(shouldPrintScoresOnDisplay){
+            display.printSensorValues("SonarCollection", printString);
+        }else{
+            Serial.println("SonarCollection: " + printString);
+        }
+        updateScore();
     }else{}
 }
 

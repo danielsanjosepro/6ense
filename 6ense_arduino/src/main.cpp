@@ -71,9 +71,7 @@ void loop() {
         button.loop(buttonOn);
 
     if(sonarCoordinator.allowsLoop()){
-        Serial.print("SonarCollection: ");
         sonarCollection.loop(sonarOn);
-        Serial.println();
     }
 
     if(gpsCoordinator.allowsLoop())
