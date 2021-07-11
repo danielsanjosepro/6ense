@@ -13,6 +13,7 @@
 #include "Coordinator.h"
 #include "config.h"
 #include "GPS.h"
+#include "Scorer.h"
 
 #define SERIAL_BAUDRATE 9600
 
@@ -21,6 +22,8 @@ auto i2c_scanner = I2CScanner();
 SonarCollection sonarCollection = SonarCollection();
 GPS gps = GPS();
 Imu imu = Imu();
+// Scorer
+Scorer scorer = Scorer(100);
 // Coordinators & Timers:
 Timer timer = Timer("millis");
 Coordinator buttonCoordinator =     Coordinator(buttonTime); 
@@ -28,6 +31,7 @@ Coordinator displayCoordinator =    Coordinator(displayTime);
 Coordinator sonarCoordinator =      Coordinator(sonarTime);
 Coordinator imuCoordinator =        Coordinator(imuTime);
 Coordinator gpsCoordinator =        Coordinator(gpsTime);
+Coordinator scoreCoordinator =      Coordinator(scoreTime);
 
 void setup()
 {
@@ -50,6 +54,7 @@ void setup()
     imuCoordinator.init();
     sonarCoordinator.init();
     gpsCoordinator.init();
+    scoreCoordinator.init();
 } 
 
 void loop() {
@@ -70,5 +75,10 @@ void loop() {
     }
     if(gpsCoordinator.allowsLoop())
         gps.loop(gpsOn);
+    if(scoreCoordinator.allowsLoop()){
+        Serial.println("Distance Score: " + String(scorer.distanceScore));
+        scorer.updateScore();
+        scorer.printScores();
+    }
 
 }

@@ -21,7 +21,7 @@ void Sonar::setup(bool sonarOn=true) {
 void Sonar::loop(bool sonarOn=true) {
     if(sonarOn){
         updateDistance();
-        Serial.println(distance);
+        //Serial.println(distance);
     }else{}
 }
 

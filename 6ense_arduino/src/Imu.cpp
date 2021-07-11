@@ -38,14 +38,9 @@ void Imu::loop(bool imuOn=true){
                 String imuData = imu.getData();
                 Serial.println(imuData);
 
-                updateScore(scorer);
+                updateScore();
         }
     }else{}
-        
-    
-    
-            
-    
 }
 
 // TODO: Characteristics format for imu data
@@ -64,6 +59,6 @@ String Imu::getData(){
 }
 
 //TODO: Find useful way of scoring IMU
-void Imu::updateScore(Scorer scorer){
+void Imu::updateScore(){
     
 }

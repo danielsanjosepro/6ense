@@ -6,7 +6,7 @@
 class I_BTSender {  // theoretically not an Interface but almost
 public:
     virtual String getData() = 0;
-    virtual void updateScore(Scorer scorer) = 0;
+    virtual void updateScore() = 0;
     uint8_t numOfCharacteristics;
 
     // Constructor

@@ -17,7 +17,7 @@ void GPS::loop(bool gpsOn=true){
         String gpsData = this->getData();
         Serial.println("Data: "+ gpsData);
 
-        updateScore(scorer);
+        updateScore();
     }else{}
 }
 
@@ -34,11 +34,14 @@ String GPS::getData(){
 }
 
 //TODO: Add threasholds through config
-void GPS::updateScore(Scorer scorer){
+void GPS::updateScore(){
     // this->encode(GPSSerial.read());
     uint8_t speed = this->speed.kmph()-25;
     if (speed > 0){
-        scorer.updateScore(-speed);
+        scorer.speedScore -= speed;
+        if (scorer.speedScore < 0){
+            scorer.speedScore = 0;
+        }
     }
 }
 

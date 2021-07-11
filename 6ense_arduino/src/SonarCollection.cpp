@@ -1,16 +1,16 @@
 #include "SonarCollection.h"
 
 SonarCollection::SonarCollection() : I_BTSender(1) {
-    sonarVector.push_back(Sonar(7,  8));
-    sonarVector.push_back(Sonar(9,  10));
-    sonarVector.push_back(Sonar(11, 12));
+    sonarVector.push_back(Sonar(8, 7));
+    sonarVector.push_back(Sonar(10, 9));
+    sonarVector.push_back(Sonar(12, 11));
 }
 
 void SonarCollection::setup(bool sonarOn=true){
     if(sonarOn){
         int i = 1;  // only for debugging purposes
         for(auto sonarIt : sonarVector){
-            Serial.print(String(i)+": ");
+            Serial.println(String(i)+": ");
             sonarIt.setup(sonarOn);
             i++;
         }
@@ -25,12 +25,12 @@ void SonarCollection::loop(bool sonarOn=true){
     if(sonarOn){
         int i = 1;  // only for debugging purposes
         for(auto sonarIt : sonarVector){
-            Serial.print(String(i)+": ");
+            //Serial.print(String(i)+": ");
             sonarIt.loop(sonarOn);
             i++;
         }
 
-    updateScore(scorer);
+    updateScore();
     }else{}
 }
 
@@ -40,10 +40,15 @@ String SonarCollection::getData(){
 }
 
 //TODO: Add threashold and weight to config
-void SonarCollection::updateScore(Scorer scorer){
+void SonarCollection::updateScore(){
     for (auto sonar:sonarVector){
         if(sonar.updateDistance() < 150){
-            scorer.updateScore(-(150-sonar.updateDistance())/10);
+            //Serial.println((150-float(sonar.updateDistance()))/10);
+            scorer.distanceScore -= (150-float(sonar.updateDistance()))/1000;
+            if (scorer.distanceScore < 0){
+                scorer.distanceScore = 0;
+            }
+            //Serial.println("Distance Score is now: " + String(scorer.distanceScore));
         }
     }
 }

@@ -4,17 +4,17 @@
 
 class Scorer{
     public:
-    // Setter function
-    void updateScore(uint8_t update);
+    // TODO: Turn these into Setter and Getter functions with private/protected score variables
+    void updateScore();
+    void printScores();
 
     //Constructor 
-    Scorer();
+    Scorer(float initScore);
 
-    private:
-    uint8_t score;
-    uint8_t speedScore;
-    uint8_t breakScore;
-    uint8_t distanceScore;
+    float score;
+    float speedScore;
+    float distanceScore;
+    float breakScore;
 
 };
 

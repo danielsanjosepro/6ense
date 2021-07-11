@@ -17,7 +17,7 @@ public:
 
     // BTSender Interface
     String getData() override;
-    void updateScore(Scorer scorer) override;
+    void updateScore() override;
 };
 
 extern GPS gps;
