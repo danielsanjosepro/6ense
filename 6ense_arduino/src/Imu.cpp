@@ -61,4 +61,7 @@ String Imu::getData(){
     return imuData;
 }
 
-extern Imu imu;
+//TODO: Find useful way of scoring IMU
+void Imu::updateScore(Scorer scorer){
+    
+}

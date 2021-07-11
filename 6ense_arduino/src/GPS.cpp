@@ -30,4 +30,13 @@ String GPS::getData(){
     return gpsData;
 }
 
+//TODO: Add threasholds through config
+void GPS::updateScore(Scorer scorer){
+    this->encode(GPSSerial.read());
+    uint8_t speed = this->speed.kmph()-25;
+    if (speed > 0){
+        scorer.updateScore(-speed);
+    }
+}
+
 

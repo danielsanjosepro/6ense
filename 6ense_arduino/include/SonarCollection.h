@@ -15,6 +15,7 @@ public:
 
     // Blutooth Sender Interface
     String getData() override;
+    void updateScore(Scorer scorer) override;
 
     // Constructor
     SonarCollection();

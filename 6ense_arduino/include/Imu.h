@@ -15,6 +15,7 @@ public:
     Imu();
     // BTSender Interface
     String getData() override;
+    void updateScore(Scorer scorer) override;
 
 private:
     float accX, accY, accZ; // In units of g 

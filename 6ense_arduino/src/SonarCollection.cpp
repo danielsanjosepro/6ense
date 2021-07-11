@@ -36,3 +36,12 @@ String SonarCollection::getData(){
     //TODO: characteristics format for sonar data.
     return "Data is coming.";
 }
+
+//TODO: Add threashold and weight to config
+void SonarCollection::updateScore(Scorer scorer){
+    for (auto sonar:sonarVector){
+        if(sonar.updateDistance() < 150){
+            scorer.updateScore(-(150-sonar.updateDistance())/10);
+        }
+    }
+}
