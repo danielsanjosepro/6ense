@@ -12,6 +12,9 @@ class Scorer{
 
     private:
     uint8_t score;
+    uint8_t speedScore;
+    uint8_t breakScore;
+    uint8_t distanceScore;
 
 };
 
