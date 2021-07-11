@@ -1,4 +1,7 @@
 # 6ense
+## Prototype:
+![prototype](images/6ense_collage.jpg)
+
 ## Board:
 ![pinout](images/6ense_circuit.jpg)
 
@@ -14,6 +17,8 @@
 - `display` object allows you to print in the LCD-Screen
     - `display.setCursor(col, lin)`
     - `display.print("Hello")` prints at the cursor
+- `scorer` object computes the scores using the sensor values.
+- `sensorPrinter` object uses the display to print the sensor values.
 ### Sensors:
 - `sonar` object allows you to get values from one sonar (not used)
 - `sonarCollection` object allows you to get values from multiple sonar objects. It contains a vector of sonars
