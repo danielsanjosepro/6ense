@@ -42,4 +42,7 @@ extern float criticalSpeed;
 extern float criticalAccel;
 extern float accelImportance;
 
+extern long waitingTimeToIncreaseScore;
+extern float increaseScoreWeight;
+
 #endif
