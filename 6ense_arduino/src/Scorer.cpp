@@ -5,9 +5,42 @@
 
 Scorer::Scorer(float initScore) : score(initScore), speedScore(initScore), distanceScore(initScore), breakScore(initScore){}
 
+void Scorer::setup(bool scoreOn){
+    if(scoreOn){
+        distanceTimer.tic();
+        breakTimer.tic();
+    }else{}
+}
+
+void Scorer::loop(bool scoreOn){
+    if(scoreOn){
+        updateScore();
+        printScores();
+    }else{}
+}
+
 void Scorer::updateScore(){
     //Serial.println("Distance Score: " + String(distanceScore));
     score = (speedScore + distanceScore + breakScore)/3;
+
+    // Check if score is decreasing
+    // if(oldSpeedScore - speedScore > 1.0)
+    if(oldDistanceScore - distanceScore > 1.0)
+        distanceTimer.tic();
+    if(oldBreakScore - breakScore > 1.0)
+        breakTimer.tic();
+    // Check if the score should increase
+    if(breakTimer.toc() > waitingTimeToIncreaseScore and breakScore < 100.0)
+        breakScore += increaseScoreWeight;
+    if(distanceTimer.toc() > waitingTimeToIncreaseScore and distanceScore < 100.0)
+        distanceScore += increaseScoreWeight;
+    // if(speedTimer.toc() > waitingTimeToIncreaseScore)
+    //     breakScore += increaseScoreWeight;
+
+    // update scores
+    oldDistanceScore = distanceScore;
+    oldBreakScore = breakScore;
+    oldSpeedScore = speedScore;
 }
 
 void Scorer::printScores(){

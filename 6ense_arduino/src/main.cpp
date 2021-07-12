@@ -50,6 +50,7 @@ void setup()
     button.setup(buttonOn);
     sonarCollection.setup(sonarOn);
     gps.setup(gpsOn);
+    scorer.setup(scoreOn);
     sensorPrinter.setup(sensorPrintOn);
 
     // Coordinator Inits:
@@ -83,8 +84,7 @@ void loop() {
         gps.loop(gpsOn);
 
     if(scoreCoordinator.allowsLoop() and scoreOn){
-        scorer.updateScore();
-        scorer.printScores();
+        scorer.loop(scoreOn);
     }
 
     if(sensorPrintCoordinator.allowsLoop()){

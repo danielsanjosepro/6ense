@@ -26,7 +26,7 @@ public:
     volatile bool wasPressed = false;
     volatile uint16_t pressedDuration = 0;
     volatile uint16_t firstTimePressed = 0;
-    static const uint8_t debouncingTime = 20;  // milli s
+    static const uint8_t debouncingTime = 50;  // milli s
 };
 
 extern Button button;

@@ -36,8 +36,13 @@ extern float totalWeight;
 // distance parameters
 extern char criticalDistance;
 extern float distanceImportance; 
-// other Parameters
+// gps Parameters
 extern float criticalSpeed;
+// accel Parameters
 extern float criticalAccel;
+extern float accelImportance;
+
+extern long waitingTimeToIncreaseScore;
+extern float increaseScoreWeight;
 
 #endif
