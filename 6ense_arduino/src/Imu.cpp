@@ -1,6 +1,8 @@
 #include <Arduino_LSM6DS3.h>
 #include <Imu.h>
 #include "MadgwickAHRS.h"
+#include "config.h"
+#include "Scorer.h"
 
 // TODO: Test if madwick filter is to slow
 Madgwick filter; // Init madwick filter
@@ -63,7 +65,9 @@ String Imu::getData(){
     return imuData;
 }
 
-//TODO: Find useful way of scoring IMU
 void Imu::updateScore(){
-    
+    float acc_sqr = accX*accX + accY*accY + accZ*accZ;
+    if(acc_sqr > criticalAccel){
+        scorer.breakScore -= accelImportance * (acc_sqr - criticalAccel)/criticalAccel;
+    }
 }

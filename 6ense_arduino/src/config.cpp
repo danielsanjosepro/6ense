@@ -34,7 +34,9 @@ float breakWeight =             1;
 char criticalDistance =         10;
 float distanceImportance =      2.0;
 
-// other Parameters
-float criticalSpeed =           0.0;
-float criticalAccel =           0.0;
+// Acceleration parameters
+float criticalAccel =           1.2;
+float accelImportance =         2.0;
 
+// gps parameters
+float criticalSpeed =           0.0;
