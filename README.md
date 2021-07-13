@@ -37,4 +37,20 @@
 - `develop`: development branch with changes coming.
 - `feature branches` : short living branches to implement new features. Merge them on `develop` with --no-ff to prevent fast forwarting if you are sure that the code works.
 
+## Main Structure of App Code:
 
+### Model:
+- `Model`: main class for adding and retrieving safety data
+- `SafetyScore` : model for safety score
+- `SafetyIncident` : model for safety incident
+### Managers:
+- `LocationManager` : retrieves current user location
+- `BluetoothManager` : creates conenction with 6ense device. Reads data every second and stores them in model
+### Views:
+- `MainView` : fullscreen view containing all views
+#### Components
+- `MapRouteDrawer` : colorizes the route according to safety score increment/decrement
+- `ScoreView` : view of all safety scores
+- `MapView` : view of integrated Apple Map
+- `RideButtonView` : start and stop button for recording ride
+- `IncidentCardView` : popup view of safety incidents
